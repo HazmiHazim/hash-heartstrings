@@ -15,3 +15,9 @@
       hive_generator: ^2.0.0
       build_runner: ^2.3.3
   ```
+  
+- Guide to get DateActivityModel.g class:
+  ```
+  Write this in your command:
+      flutter pub run build_runner build --delete-conflicting-outputs
+  ```
