@@ -52,7 +52,7 @@ class _date_goalState extends State<date_goal> {
   Widget build(BuildContext context) {
     return Scaffold(backgroundColor: Color(0xFFF8B1C3),
       appBar: AppBar(title: Text('Date To Do'), centerTitle: true,),
-      drawer: mainSideBar(),
+      //drawer: mainSideBar(),
       body: ListView.builder(itemCount: DateDB.dateToDO.length, itemBuilder: (context, index) {
         final activity = DateDB.dateToDO[index];
           return dateList(

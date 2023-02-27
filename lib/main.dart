@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hash_heartstring/Controller/DateActivityController.dart';
 import 'package:hash_heartstring/Model/DateActivityModel.dart';
 import 'package:hash_heartstring/SideBarMenu/main_side_bar.dart';
+import 'package:hash_heartstring/View/DateActivityInterface/DateActivityInterface.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 
@@ -18,11 +20,31 @@ Future<void> main() async{
       dateActivityBox.delete(DateActivityModel.id);
     }
   });
-  runApp(const MyApp());
+  runApp(BaseWidget(child: MyApp()));
+}
+
+class BaseWidget extends InheritedWidget {
+  BaseWidget({required this.child}) : super(child: child);
+  final DateActivityController DateActivityStore = DateActivityController();
+  final Widget child;
+
+  static BaseWidget of(BuildContext context) {
+    final base = context.dependOnInheritedWidgetOfExactType<BaseWidget>();
+    if (base != null) {
+      return base;
+    }
+    else {
+      throw StateError('Could not find ancestor widget of type BaseWidget');
+    }
+  }
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
+    return false;
+  }
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -32,32 +54,23 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: const MyHomePage(title: 'HASH Heartstring'),
+      home: DateActivityInterface(),
       //home: date_goal(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+class Main extends StatefulWidget {
+  const Main({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Main> createState() => _MainState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-
+class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF8B1C3),
-      appBar: AppBar(
-        title: const Text("Happy Birthday Sayangku"),
-        centerTitle: true,
-      ),
-      drawer: const mainSideBar(),
-    );
+    return const Scaffold(backgroundColor: Color(0xFFF8B1C3),);
   }
 }
+

@@ -28,7 +28,7 @@ class DateActivityController {
   }
 
   //Method For Update UI if There is Changes
-  ValueListenable<Box<DateActivityModel>> listenToDateActivityModel() {
+  ValueListenable<Box<DateActivityModel>> listenToDateActivities() {
     return Hive.box<DateActivityModel>(dateActivityBoxName).listenable();
   }
 }
