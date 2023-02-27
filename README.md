@@ -18,6 +18,8 @@
   
 - Guide to get DateActivityModel.g class:
   ```
-  Write this in command your terminal:
-  -flutter pub run build_runner build --delete-conflicting-outputs
+  -Write this in command your terminal:
+  ```
+      flutter pub run build_runner build --delete-conflicting-outputs
+  ````
   ```
