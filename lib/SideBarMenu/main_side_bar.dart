@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hash_heartstring/DateGoal/date_goal.dart';
+import 'package:hash_heartstring/main.dart';
 
 class mainSideBar extends StatelessWidget {
   const mainSideBar({super.key});
@@ -7,7 +8,7 @@ class mainSideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Color(0xFFF8B1C3),
+      backgroundColor: const Color(0xFFF8B1C3),
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -36,12 +37,16 @@ class mainSideBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.dashboard),
             title: Text('Dashboard'),
-            onTap: () => null,
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage(title: 'HASH Heartstring')));
+            },
           ),
           ListTile(
             leading: Icon(Icons.edit_note_outlined),
             title: Text('Date Activity'),
-            onTap: () => date_goal(),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const date_goal()));
+            }
           ),
           Divider(),
           ListTile(
@@ -56,12 +61,16 @@ class mainSideBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.quiz_sharp),
             title: Text('Quiz Game'),
-            onTap: () => null,
+            onTap: () {
+              //Navigator.push(context, MaterialPageRoute(builder: (context) => const QuizGame()));
+            },
           ),
           ListTile(
             leading: Icon(Icons.category_outlined),
             title: Text('Truth | Dare Game'),
-            onTap: () => null,
+            onTap: () {
+              //Navigator.push(context, MaterialPageRoute(builder: (context) => const TrueDareGame()));
+            },
           ),
         ],
       ),
