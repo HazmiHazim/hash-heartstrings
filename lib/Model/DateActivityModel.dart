@@ -1,7 +1,4 @@
-import 'package:uuid/uuid.dart';
 import 'package:hive/hive.dart';
-
-part 'DateActivityModel.g.dart';
 
 @HiveType(typeId: 0)
 class DateActivityModel extends HiveObject{
@@ -21,11 +18,4 @@ class DateActivityModel extends HiveObject{
     required this.isComplete,
   });
 
-  factory DateActivityModel.create({required String dateDescription, required DateTime createdAt}) =>
-      DateActivityModel(
-          id: Uuid().v4(),
-          dateDescription: dateDescription,
-          createdAt: DateTime.now(),
-          isComplete: false
-      );
 }
