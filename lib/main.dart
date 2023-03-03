@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hash_heartstring/View/DateActivityInterface/DateActivityInterface.dart';
-import 'package:hive_flutter/adapters.dart';
+import 'package:hash_heartstring/BottomNavigationBar/NavigationBar.dart';
 
-Future<void> main() async{
-  //Initialize Hive Database
-  await Hive.initFlutter();
-
-  //Open Hive Box
-  await Hive.openBox('DateActivity');
-
-  runApp(const MyApp());
+void main() {
+  runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -24,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: const DateActivityInterface(),
+      home: Main(),
     );
   }
 }
@@ -40,8 +34,12 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: navigationBar(),
       backgroundColor: Color(0xFFF8B1C3),
-      appBar: AppBar(title: Text('Main Page')),
+      appBar: AppBar(
+          title: Text('Dashboard'),
+          centerTitle: true,
+      ),
     );
   }
 }

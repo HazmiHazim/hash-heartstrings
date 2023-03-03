@@ -1,54 +1,34 @@
 import 'package:flutter/foundation.dart';
-import 'package:hash_heartstring/Model/DateActivityModel.dart';
-import 'package:hive/hive.dart';
+import 'package:hash_heartstring/Model/DateActivityModel/DateActivityModel.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:uuid/uuid.dart';
 
 class DateActivityController {
+  //Reference To The Hive Box
+  static const DateActivityBoxName = 'DateActivity';
+  final Box<DateActivityModel> box = Hive.box<DateActivityModel>(DateActivityBoxName);
 
-  late Box<DateActivityModel> dateActivityBox;
-
-  //Reference DateActivity Hive Box
-  DateActivityController() {
-    dateActivityBox = Hive.box<DateActivityModel>('DateActivity');
+  //Method To Create DateActivity
+  Future<void> createDateActivity({required DateActivityModel dateActivityModel}) async {
+    await box.put(dateActivityModel.id, dateActivityModel);
   }
 
-  //Method For Create Date Activity
-  Future<void> createDateActivity(String dateDescription) async {
-    final id = Uuid().v4();
-    final createdAt = DateTime.now();
-    final isComplete = false;
-    final dateActivity = DateActivityModel(
-        id: id,
-        dateDescription: dateDescription,
-        createdAt: createdAt,
-        isComplete: isComplete);
-    await dateActivityBox.add(dateActivity);
+  //Method To Get DateActivity
+  Future<DateActivityModel?> getDateActivity({required String id}) async {
+    return box.get(id);
   }
 
-  //Method For Read Date Activity
-  List<DateActivityModel> getDateActivity() {
-    final dateActivities =
-    dateActivityBox.values.toList().cast<DateActivityModel>();
-    return dateActivities;
+  //Method To Update DateActivity
+  Future<void> updateDateActivity({required DateActivityModel dateActivityModel}) async {
+    await dateActivityModel.save();
   }
 
-  //Method For Update Date Activity
-  Future<void> updateDateActivity(String id, String dateDescription, bool isComplete) async {
-    final dateActivity = dateActivityBox.values.firstWhere((e) => e.id == id);
-    dateActivity.dateDescription = dateDescription;
-    dateActivity.isComplete = isComplete;
-    await dateActivity.save();
+  //Method To Delete DateActivity
+  Future<void> deleteDateActivity({required DateActivityModel dateActivityModel}) async {
+    await dateActivityModel.delete();
   }
 
-  //Method For Delete Date Activity
-  Future<void> deleteDateActivity(String id) async {
-    final dateActivity = dateActivityBox.values.firstWhere((e) => e.id == id);
-    await dateActivity.delete();
-  }
-
-  //Method For Update UI if There is Changes
-  ValueListenable<Box<DateActivityModel>> listenToDateActivities() {
-    return Hive.box<DateActivityModel>('DateActivity').listenable();
+  //Method To Update UI When There Is Changes
+  ValueListenable<Box<DateActivityModel>> listenToDateActivity() {
+    return Hive.box<DateActivityModel>(DateActivityBoxName).listenable();
   }
 }

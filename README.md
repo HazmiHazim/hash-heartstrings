@@ -15,7 +15,7 @@
       build_runner: ^2.3.3
   ```
   
-- Guide to get DateActivityModel.g class:
+- Guide to get adapter class:
   ```
   Write this command in your terminal:
   flutter pub run build_runner build --delete-conflicting-outputs
