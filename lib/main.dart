@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gif/flutter_gif.dart';
 import 'package:hash_heartstring/View/BottomNavigationBar/BottomNavigationBar.dart';
 
 void main() {
@@ -45,6 +46,14 @@ class _MainState extends State<Main> {
         backgroundColor: Color(0xFFFF69B4),
       ),
       bottomNavigationBar: MyNavigationBar(),
+      body: Stack(
+        children: [
+          Container(
+            alignment: Alignment.center,
+            child: Image.asset('assets/images/love2.png'),
+          ),
+        ],
+      ),
     );
   }
 }
