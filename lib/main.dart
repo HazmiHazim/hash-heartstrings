@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hash_heartstring/BottomNavigationBar/NavigationBar.dart';
+import 'package:hash_heartstring/View/BottomNavigationBar/BottomNavigationBar.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 
@@ -31,15 +31,20 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: navigationBar(),
       backgroundColor: Color(0xFFF8B1C3),
       appBar: AppBar(
-          title: Text('Dashboard'),
-          centerTitle: true,
+        centerTitle: true,
+        title: const Text(
+            'Home',
+            style: TextStyle(color: Color(0xFFE6E6FA))
+        ),
+        backgroundColor: Color(0xFFFF69B4),
       ),
+      bottomNavigationBar: MyNavigationBar(),
     );
   }
 }
