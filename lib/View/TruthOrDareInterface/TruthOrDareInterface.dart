@@ -10,6 +10,16 @@ class TruthOrDareInterface extends StatefulWidget {
 class _TruthOrDareInterfaceState extends State<TruthOrDareInterface> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Color(0xFFE6E6FA),
+      appBar: AppBar(
+        backgroundColor: Color(0xFF87CEEB),
+        title: Text(
+            'Truth Or Dare',
+            style: TextStyle(color: Colors.white)
+        ),
+        centerTitle: true,
+      ),
+    );
   }
 }

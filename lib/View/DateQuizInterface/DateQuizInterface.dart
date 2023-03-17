@@ -10,6 +10,16 @@ class DateQuizInterface extends StatefulWidget {
 class _DateQuizInterfaceState extends State<DateQuizInterface> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Color(0xFFE6E6FA),
+      appBar: AppBar(
+        backgroundColor: Color(0xFF87CEEB),
+        title: Text(
+            'Love Quiz',
+            style: TextStyle(color: Colors.white)
+        ),
+        centerTitle: true,
+      ),
+    );
   }
 }

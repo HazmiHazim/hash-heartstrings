@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:hash_heartstring/Model/DateActivityModel/DateActivityModel.dart';
+import 'package:hash_heartstring/Model/DatePlannerModel/DatePlannerModel.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class DateActivityController {

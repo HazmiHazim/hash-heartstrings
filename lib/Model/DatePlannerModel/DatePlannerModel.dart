@@ -1,6 +1,5 @@
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
-part 'DateActivityModel.g.dart';
 
 @HiveType(typeId: 0)
 class DateActivityModel extends HiveObject{
