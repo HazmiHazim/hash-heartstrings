@@ -1,12 +1,52 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:hash_heartstring/Controller/DateActivityController.dart';
+import 'package:hash_heartstring/Model/DatePlannerModel/DatePlannerModel.dart';
 import 'package:hash_heartstring/View/DatePlannerInterface/DatePlannerInterface.dart';
 import 'package:hash_heartstring/View/DateQuizInterface/DateQuizInterface.dart';
 import 'package:hash_heartstring/View/HomeInterface/HomeInterface.dart';
 import 'package:hash_heartstring/View/TruthOrDareInterface/TruthOrDareInterface.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  //Initialize Hive
+  await Hive.initFlutter();
+
+  //Register Adapter
+  Hive.registerAdapter<DatePlannerModel>(DatePlannerModelAdapter());
+
+  //Open Hive Box
+  var plannerBox = await Hive.openBox<DatePlannerModel>('datePlannerBox');
+
+  // delete Data From Previous Day
+  plannerBox.values.forEach((datePlannerModel) {
+    if(datePlannerModel.createdAt.day != DateTime.now().day){
+      plannerBox.delete(datePlannerModel.id);
+    }
+  });
+
+  runApp(BaseWidget(child: MyApp()));
+}
+
+class BaseWidget extends InheritedWidget{
+  BaseWidget({required this.child}) : super(child:child);
+  final DatePlannerController dateController = DatePlannerController();
+  final Widget child;
+
+  static BaseWidget of(BuildContext context){
+    final base = context.dependOnInheritedWidgetOfExactType<BaseWidget>();
+    if(base != null){
+      return base;
+    }else{
+      throw StateError('Could not find ancestor widget of type BaseWidget');
+    }
+  }
+
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
+    return false;
+  }
+
 }
 
 class MyApp extends StatelessWidget {
