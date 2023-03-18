@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class DateQuizInterface extends StatefulWidget {
-  const DateQuizInterface({Key? key}) : super(key: key);
+class GameInterface extends StatefulWidget {
+  const GameInterface({Key? key}) : super(key: key);
 
   @override
-  State<DateQuizInterface> createState() => _DateQuizInterfaceState();
+  State<GameInterface> createState() => _GameInterfaceState();
 }
 
-class _DateQuizInterfaceState extends State<DateQuizInterface> {
+class _GameInterfaceState extends State<GameInterface> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,7 @@ class _DateQuizInterfaceState extends State<DateQuizInterface> {
       appBar: AppBar(
         backgroundColor: Color(0xFF87CEEB),
         title: Text(
-            'Love Quiz',
+            'Hazim x Aishah Game',
             style: TextStyle(color: Colors.white)
         ),
         centerTitle: true,

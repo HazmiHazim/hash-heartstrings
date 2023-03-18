@@ -41,7 +41,7 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
                     title: const Text('Date Activity'),
-                    backgroundColor: Colors.white,
+                    backgroundColor: const Color(0xFFE6E6FA),
                     content: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                         child: Column(
@@ -69,12 +69,14 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                                   }, currentTime: DateTime.now());
                                 },
                                 autofocus: true,
+                                style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.blueAccent),
                                 child: const Text('Save'),
                               ),
                               TextButton(
                                 onPressed: () {
                                   Navigator.pop(context); //Close Dialog Box
                                 },
+                                style: TextButton.styleFrom(primary: Colors.white, backgroundColor: const Color(0xFFFF69B4)),
                                 child: const Text('Cancel'),
                               ),
                             ])
@@ -95,9 +97,9 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                 background: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Icon(Icons.delete_outline, color: Colors.grey),
+                    Icon(Icons.delete, color: Colors.grey),
                     SizedBox(width: 8),
-                    Text('Activity Was Deleted', style: TextStyle(color: Colors.grey))
+                    Text('Activity is Deleted', style: TextStyle(color: Colors.grey))
                   ],
                 ),
                 onDismissed: (direction) {

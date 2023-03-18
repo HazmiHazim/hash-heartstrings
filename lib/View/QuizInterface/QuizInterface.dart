@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class TruthOrDareInterface extends StatefulWidget {
-  const TruthOrDareInterface({Key? key}) : super(key: key);
+class QuizInterface extends StatefulWidget {
+  const QuizInterface({Key? key}) : super(key: key);
 
   @override
-  State<TruthOrDareInterface> createState() => _TruthOrDareInterfaceState();
+  State<QuizInterface> createState() => _QuizInterfaceState();
 }
 
-class _TruthOrDareInterfaceState extends State<TruthOrDareInterface> {
+class _QuizInterfaceState extends State<QuizInterface> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,7 @@ class _TruthOrDareInterfaceState extends State<TruthOrDareInterface> {
       appBar: AppBar(
         backgroundColor: Color(0xFF87CEEB),
         title: Text(
-            'Truth Or Dare',
+            'Love Quiz',
             style: TextStyle(color: Colors.white)
         ),
         centerTitle: true,

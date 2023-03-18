@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:hash_heartstring/Controller/DateActivityController.dart';
 import 'package:hash_heartstring/Model/DatePlannerModel/DatePlannerModel.dart';
 import 'package:hash_heartstring/View/DatePlannerInterface/DatePlannerInterface.dart';
-import 'package:hash_heartstring/View/DateQuizInterface/DateQuizInterface.dart';
+import 'package:hash_heartstring/View/GameInterface/GameInterface.dart';
 import 'package:hash_heartstring/View/HomeInterface/HomeInterface.dart';
-import 'package:hash_heartstring/View/TruthOrDareInterface/TruthOrDareInterface.dart';
+import 'package:hash_heartstring/View/QuizInterface/QuizInterface.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
@@ -81,8 +81,8 @@ class _MainState extends State<Main> {
   final List<Widget> screens = [
     const HomeInterface(),
     const DatePlannerInterface(),
-    const DateQuizInterface(),
-    const TruthOrDareInterface(),
+    const QuizInterface(),
+    const GameInterface(),
   ];
 
   @override
