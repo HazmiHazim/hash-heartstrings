@@ -158,7 +158,7 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                             },
                           ),
                           trailing: Text(
-                            DateFormat('hh:mm a').format(datePlannerModel.createdAt),
+                            DateFormat('h:mm a').format(datePlannerModel.createdAt),
                             style: const TextStyle(fontSize: 14, color: Colors.white),
                           ),
                         ),
