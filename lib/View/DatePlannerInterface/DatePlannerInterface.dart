@@ -3,6 +3,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:hash_heartstring/Model/DatePlannerModel/DatePlannerModel.dart';
 import 'package:hash_heartstring/main.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 
 class DatePlannerInterface extends StatefulWidget {
   const DatePlannerInterface({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
           appBar: AppBar(
             backgroundColor: const Color(0xFF87CEEB),
             title: const Text(
-                'Plan To Do',
+                'Dating Plan',
                 style: TextStyle(color: Colors.white)
             ),
             centerTitle: true,
@@ -87,26 +88,84 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
               );
             },
             backgroundColor: const Color(0xFFFF69B4),
-            child: const Icon(Icons.add),
+            child: const Icon(Icons.add, color: Colors.white),
           ),
           body: ListView.builder(
             itemCount: datePlannerBox.length,
             itemBuilder: (BuildContext context, int index) {
               var datePlannerModel = datePlannerBox[index];
+              TextEditingController _textController = TextEditingController(text: datePlannerModel.activityName);
               return Dismissible(
                 background: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Icon(Icons.delete, color: Colors.grey),
+                    Icon(Icons.delete, color: Colors.redAccent),
                     SizedBox(width: 8),
-                    Text('Activity is Deleted', style: TextStyle(color: Colors.grey))
+                    Text('Activity is Deleted', style: TextStyle(color: Colors.blueGrey))
                   ],
                 ),
                 onDismissed: (direction) {
                   base.dateController.deleteDateActivity(datePlannerModel: datePlannerModel);
                 },
                 key: Key(datePlannerModel.id),
-                child: Text(datePlannerModel.activityName),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 13), //Add space between container
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8), //add space between side edge
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: const Color(0xFF87CEEB).withOpacity(0.8),
+                            borderRadius: BorderRadius.circular(8),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  offset: const Offset(0, 4),
+                                  blurRadius: 10
+                              )
+                            ]
+                        ),
+                        child: ListTile(
+                          leading: GestureDetector(
+                            onTap: (){
+                              datePlannerModel.isCompleted = !datePlannerModel.isCompleted;
+                              base.dateController.updateDateActivity(datePlannerModel: datePlannerModel);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: datePlannerModel.isCompleted ? Colors.green : Colors.white,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(color: Colors.grey)
+                              ),
+                              child: const Icon(Icons.check, color: Colors.white),
+                            ),
+                          ),
+                          title: datePlannerModel.isCompleted
+                              ? Text(
+                            datePlannerModel.activityName,
+                            style: const TextStyle(
+                                color: Colors.grey,
+                                decoration: TextDecoration.lineThrough
+                            ),
+                          ): TextField(
+                            controller: _textController,
+                            decoration: const InputDecoration(border: InputBorder.none),
+                            onSubmitted: (value) {
+                              if(value.isNotEmpty) {
+                                datePlannerModel.activityName = value;
+                                base.dateController.updateDateActivity(datePlannerModel: datePlannerModel);
+                              }
+                            },
+                          ),
+                          trailing: Text(
+                            DateFormat('hh:mm a').format(datePlannerModel.createdAt),
+                            style: const TextStyle(fontSize: 14, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
               );
             },
           ),
