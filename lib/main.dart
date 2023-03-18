@@ -96,7 +96,7 @@ class _MainState extends State<Main> {
         animationDuration: const Duration(milliseconds: 280),
         items: const <Widget>[
           Icon(Icons.home, size: 30),
-          Icon(Icons.note_alt_outlined, size: 30),
+          Icon(Icons.note_alt, size: 30),
           Icon(Icons.quiz_rounded, size: 30),
           Icon(Icons.games_outlined, size: 30),
         ],
