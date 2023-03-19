@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hash_heartstring/Model/QuizModel/QuizModel.dart';
+import 'package:hash_heartstring/View/QuizInterface/Answer.dart';
+import 'package:hash_heartstring/Controller/QuizController/Question.dart';
 
 class QuizInterface extends StatefulWidget {
   const QuizInterface({Key? key}) : super(key: key);
@@ -8,9 +11,41 @@ class QuizInterface extends StatefulWidget {
 }
 
 class _QuizInterfaceState extends State<QuizInterface> {
-  List<Icon> scoreTracker = [];
+
   int questionIndex = 0;
   int totalScore = 0;
+  bool answerIsSelected = false;
+  bool quizEnd = false;
+
+  //Create Logic When User Answer The Question
+  void questionAnswered(bool answerScore) {
+    setState(() {
+      // Answer is Selected
+      answerIsSelected = true;
+      //Check if the answer is correct
+      if (answerScore) {
+        totalScore = totalScore + 1;
+      }
+    });
+
+    //Make Sure The Score Is Reset When All Question is Answered
+    if (questionIndex + 1 == Question.question.length) {
+      quizEnd = true;
+    }
+  }
+
+  void nextQuestion() {
+    setState(() {
+      questionIndex = questionIndex + 1;
+      answerIsSelected = false;
+    });
+
+    if (questionIndex >= Question.question.length) {
+      questionIndex = 0;
+      totalScore = 0;
+      quizEnd = false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +62,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
       body: Center(
         child: Column(
           children: [
-            Row(
-              children: [
-                if(scoreTracker.length == 0)
-                  SizedBox(height: 50),
-                if (scoreTracker.length > 0)
-                  ...scoreTracker,
-              ],
-            ),
+            const SizedBox(height: 50),
             Container(
               width: double.infinity,
               height: 130.0,
@@ -46,7 +74,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
               ),
               child: Center(
                 child: Text(
-                  question[questionIndex]['soalan'] as String,
+                  Question.question[questionIndex]['soalan'],
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,
@@ -56,107 +84,35 @@ class _QuizInterfaceState extends State<QuizInterface> {
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                padding: EdgeInsets.all(15),
-                margin: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: null,
-                  border: Border.all(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text('Answer Scheme', style: TextStyle(fontSize: 15)),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                padding: EdgeInsets.all(15),
-                margin: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: null,
-                  border: Border.all(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text('Answer Scheme', style: TextStyle(fontSize: 15)),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                padding: EdgeInsets.all(15),
-                margin: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: null,
-                  border: Border.all(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text('Answer Scheme', style: TextStyle(fontSize: 15)),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                padding: EdgeInsets.all(15),
-                margin: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: null,
-                  border: Border.all(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text('Answer Scheme', style: TextStyle(fontSize: 15)),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                padding: EdgeInsets.all(15),
-                margin: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: null,
-                  border: Border.all(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text('Answer Scheme', style: TextStyle(fontSize: 15)),
-              ),
-            ),
+            ...((Question.question[questionIndex]['jawapan'] as List<Map<String, Object>>)
+                .map((jawapan) => Answer(
+              quizModel: QuizModel(
+                pilihanJawapan: jawapan['pilihanJawapan'] as String,
+                answerColor: answerIsSelected ? jawapan['score'] as bool ? Colors.green : Colors.red : Colors.transparent,
+                answerClick: (){
+                  questionAnswered(jawapan['score'] as bool);
+                },
+              )
+            ))).toList(),
             //Event occur when user complete 1 question
             Container(
               padding: EdgeInsets.all(20),
-              child: Text('0/10', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
-            )
+              child: Text('${totalScore.toString()}/${Question.question.length}', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+            ),
+            //Button Next Page is Shown When User Finish Answer the Question
+            if (answerIsSelected)
+              ElevatedButton(
+                onPressed: () {
+                  nextQuestion();
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blueAccent,
+                ),
+                child: quizEnd ? const Text('Reset Question') : const Text('Next Question'),
+              ),
           ],
         ),
       ),
     );
   }
-
-  final question = const [
-    {
-      'soalan': 'Hazim suka makan apa?',
-      'jawapan': [
-        {'pilihanJawapan': 'Nasi Kandar Kuah Campuq', 'score': false},
-        {'pilihanJawapan': 'Nasi Goreng U.S.A', 'score': false},
-        {'pilihanJawapan': 'Nasi Ayam', 'score': true},
-        {'pilihanJawapan': 'Nasi Goreng Lamb Chop', 'score': false},
-        {'pilihanJawapan': 'Nasi Putih Ayam Buttermilk', 'score': false},
-      ],
-    },
-    {
-      'soalan': 'Hazim suka minum aoa?',
-      'jawapan': [
-        {'pilihanJawapan': 'Milo Ais Mamak', 'score': false},
-        {'pilihanJawapan': 'Teh Ais Sedap', 'score': false},
-        {'pilihanJawapan': 'Neslo Ais', 'score': false},
-        {'pilihanJawapan': 'Starbucks', 'score': false},
-        {'pilihanJawapan': 'Teh Ais Mamak', 'score': true},
-      ]
-    }
-  ];
 }

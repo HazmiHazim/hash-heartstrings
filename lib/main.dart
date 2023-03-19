@@ -1,6 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:hash_heartstring/Controller/DateActivityController.dart';
+import 'package:hash_heartstring/Controller/DateActivityController/DateActivityController.dart';
 import 'package:hash_heartstring/Model/DatePlannerModel/DatePlannerModel.dart';
 import 'package:hash_heartstring/View/DatePlannerInterface/DatePlannerInterface.dart';
 import 'package:hash_heartstring/View/GameInterface/GameInterface.dart';

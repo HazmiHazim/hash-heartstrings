@@ -56,7 +56,7 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                               ),
                             ),
                             Row(children: [
-                              TextButton(
+                              ElevatedButton(
                                 onPressed: () {
                                   String value =_textController.text;
                                   //Event Occur When Click Button Save
@@ -70,14 +70,15 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                                   }, currentTime: DateTime.now());
                                 },
                                 autofocus: true,
-                                style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.blueAccent),
+                                style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
                                 child: const Text('Save'),
                               ),
-                              TextButton(
+                              ElevatedButton(
                                 onPressed: () {
                                   Navigator.pop(context); //Close Dialog Box
                                 },
-                                style: TextButton.styleFrom(primary: Colors.white, backgroundColor: const Color(0xFFFF69B4)),
+                                autofocus: true,
+                                style: ElevatedButton.styleFrom(primary: const Color(0xFFFF69B4)),
                                 child: const Text('Cancel'),
                               ),
                             ])
