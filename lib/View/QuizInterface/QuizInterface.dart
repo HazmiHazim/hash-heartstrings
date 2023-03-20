@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hash_heartstring/Model/QuizModel/QuizModel.dart';
 import 'package:hash_heartstring/View/QuizInterface/Answer.dart';
 import 'package:hash_heartstring/Controller/QuizController/Question.dart';
+import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
 class QuizInterface extends StatefulWidget {
   const QuizInterface({Key? key}) : super(key: key);
@@ -39,6 +40,38 @@ class _QuizInterfaceState extends State<QuizInterface> {
       questionIndex = questionIndex + 1;
       answerIsSelected = false;
     });
+
+    double love = (totalScore / Question.question.length) * 100;
+    double loveProgress = love / 100;
+    double progressValue = 0;
+
+    if (quizEnd) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          backgroundColor: Color(0xFFE6E6FA),
+          title: Container(
+            alignment: Alignment.center,
+            child: LiquidCustomProgressIndicator(
+              value: loveProgress,
+              direction: Axis.vertical,
+              shapePath: heartContainer(),
+              center: Text('${love.toStringAsFixed(2)}%'),
+            ),
+          ),
+          content: Container(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              autofocus: true,
+              child: Text('Close'),
+            ),
+          ),
+        )
+      );
+    }
 
     if (questionIndex >= Question.question.length) {
       questionIndex = 0;
@@ -90,6 +123,10 @@ class _QuizInterfaceState extends State<QuizInterface> {
                 pilihanJawapan: jawapan['pilihanJawapan'] as String,
                 answerColor: answerIsSelected ? jawapan['score'] as bool ? Colors.green : Colors.red : Colors.transparent,
                 answerClick: (){
+                  if (answerIsSelected){
+                    return;
+                  }
+                  //Select The Answer And Give The Score
                   questionAnswered(jawapan['score'] as bool);
                 },
               )
@@ -108,11 +145,23 @@ class _QuizInterfaceState extends State<QuizInterface> {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blueAccent,
                 ),
-                child: quizEnd ? const Text('Reset Question') : const Text('Next Question'),
+                child: quizEnd ? const Text('See Your Love Level') : const Text('Next Question'),
               ),
           ],
         ),
       ),
     );
+  }
+
+  Path heartContainer() {
+    return Path()
+        ..moveTo(55, 15)
+        ..cubicTo(55, 12, 50, 0, 30, 0)
+        ..cubicTo(0, 0, 0, 37.5, 0, 37.5)
+        ..cubicTo(0, 55, 20, 77, 55, 95)
+        ..cubicTo(90, 77, 110, 55, 110, 37.5)
+        ..cubicTo(110, 37.5, 110, 0, 80, 0)
+        ..cubicTo(65, 0, 55, 12, 55, 15)
+        ..close();
   }
 }
