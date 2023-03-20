@@ -41,7 +41,7 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
               showDialog(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                    title: const Text('Date Activity'),
+                    title: const Text('Date Activity', textAlign: TextAlign.center),
                     backgroundColor: const Color(0xFFE6E6FA),
                     content: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
