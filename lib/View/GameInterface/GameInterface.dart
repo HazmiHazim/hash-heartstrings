@@ -20,6 +20,14 @@ class _GameInterfaceState extends State<GameInterface> {
         ),
         centerTitle: true,
       ),
+      body: Container(
+        alignment: Alignment.center,
+        child: ElevatedButton(
+          autofocus: true,
+          onPressed: () {},
+          child: Text('Play Game'),
+        ),
+      )
     );
   }
 }
