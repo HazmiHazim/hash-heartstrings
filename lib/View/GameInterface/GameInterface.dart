@@ -13,10 +13,15 @@ class GameInterface extends StatefulWidget {
 class _GameInterfaceState extends State<GameInterface> {
 
   bool play = false;
-  bool playMusic = false;
 
   //Initialize Game Controller
   final GameController gameController = GameController();
+
+  @override
+  void dispose() {
+    FlameAudio.bgm.stop();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +53,7 @@ class _GameInterfaceState extends State<GameInterface> {
               child: Padding(
                 padding: EdgeInsets.all(20),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('L O V E', style: TextStyle(color: Colors.blue)),
                     Row(
@@ -81,12 +86,28 @@ class _GameInterfaceState extends State<GameInterface> {
                         ),
                         Row(
                           children: [
-                            GameBoyButton(text: 'a', function: (){}),
-                            GameBoyButton(text: 'b', function: (){}),
+                            Container(height: 50, width: 50),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Column(
+                              children: [
+                                Container(height: 50, width: 50),
+                                GameBoyButton(text: 'b', function: (){}),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                GameBoyButton(text: 'a', function: (){}),
+                                Container(height: 50, width: 50),
+                              ],
+                            )
                           ],
                         )
                       ],
                     ),
+                    Text('H A H A')
                   ],
                 )
               )
@@ -100,7 +121,6 @@ class _GameInterfaceState extends State<GameInterface> {
           onPressed: () {
             setState(() {
               play = true;
-              playMusic = true;
               FlameAudio.bgm.play('Background-Music.mp3');
             });
           },
