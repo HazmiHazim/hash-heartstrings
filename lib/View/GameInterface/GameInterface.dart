@@ -2,6 +2,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:hash_heartstring/Controller/GameController/GameController.dart';
 import 'package:hash_heartstring/View/GameInterface/GameBoyButton.dart';
+import 'package:hash_heartstring/View/GameInterface/Map/Battleground.dart';
 
 class GameInterface extends StatefulWidget {
   const GameInterface({Key? key}) : super(key: key);
@@ -44,6 +45,11 @@ class _GameInterfaceState extends State<GameInterface> {
             flex: 2,
             child: Container(
               color: Colors.black,
+              child: Stack(
+                children: [
+                  Battleground(),
+                ],
+              ),
             ),
           ),
           Expanded(
