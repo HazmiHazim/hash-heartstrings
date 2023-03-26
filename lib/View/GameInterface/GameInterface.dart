@@ -28,7 +28,6 @@ class _GameInterfaceState extends State<GameInterface> {
   Widget build(BuildContext context) {
     //Initialize Flame Audio Background Music
     FlameAudio.bgm.initialize();
-
     return Scaffold(
       backgroundColor: Color(0xFFE6E6FA),
       appBar: AppBar(
@@ -70,21 +69,24 @@ class _GameInterfaceState extends State<GameInterface> {
                             Column(
                               children: [
                                 Container(height: 50, width: 50),
-                                GameBoyButton(text: '←', function: (){gameController.left();}),
+                                GameBoyButton(text: '←', function: (){
+                                  Container();
+                                  gameController.buttonLeft();
+                                }),
                                 Container(height: 50, width: 50),
                               ],
                             ),
                             Column(
                               children: [
-                                GameBoyButton(text: '↑', function: (){gameController.up();}),
+                                GameBoyButton(text: '↑', function: (){gameController.buttonUp();}),
                                 Container(height: 50, width: 50),
-                                GameBoyButton(text: '↓', function: (){gameController.down();}),
+                                GameBoyButton(text: '↓', function: (){gameController.bottonDown();}),
                               ],
                             ),
                             Column(
                               children: [
                                 Container(height: 50, width: 50),
-                                GameBoyButton(text: '→', function: (){gameController.right();}),
+                                GameBoyButton(text: '→', function: (){gameController.buttonRight();}),
                                 Container(height: 50, width: 50),
                               ],
                             )

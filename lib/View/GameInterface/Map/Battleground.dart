@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 class Battleground extends StatefulWidget {
@@ -7,7 +8,67 @@ class Battleground extends StatefulWidget {
   State<Battleground> createState() => _BattlegroundState();
 }
 
-class _BattlegroundState extends State<Battleground> {
+class _BattlegroundState extends State<Battleground> with TickerProviderStateMixin{
+
+  late AnimationController boyController;
+  late Animation<Offset> boyAnimation;
+  late AnimationController girlController;
+  late Animation<Offset> girlAnimation;
+  bool boyStop = false;
+  bool girlStop = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Animation For Boy
+    boyController = AnimationController(
+      duration: const Duration(seconds: 10),
+      vsync: this,
+    );
+
+    boyAnimation = Tween<Offset>(
+      begin: Offset(1.5, 0),
+      end: Offset(-1, 0),
+    ).animate(boyController);
+
+    // Set up the animation to stop at a specific position
+    boyAnimation.addListener(() {
+      if (boyAnimation.value.dx < 0.95) {
+        boyController.stop();
+        setState(() {
+          boyStop = true;
+        });
+      }
+    });
+
+    // Start the animation
+    boyController.forward();
+
+    // Animation For Girl
+    girlController = AnimationController(
+      duration: const Duration(milliseconds: 3400),
+      vsync: this,
+    );
+
+    girlAnimation = Tween<Offset>(
+      begin: Offset(-1, 0),
+      end: Offset(2, 0),
+    ).animate(girlController);
+
+    // Set up the animation to stop at a specific position
+    girlAnimation.addListener(() {
+      if (girlAnimation.value.dx > 0.95) {
+        girlController.stop();
+        setState(() {
+          girlStop = true;
+        });
+      }
+    });
+
+    // Start the animation
+    girlController.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,21 +81,55 @@ class _BattlegroundState extends State<Battleground> {
             children: [
               Image.asset(
                 'assets/images/Grass-Battle-Ground.png',
-                width: MediaQuery.of(context).size.width - 30,
+                width: 355,
                 fit: BoxFit.cover,
               ),
-              AnimatedContainer(
-                duration: Duration(seconds: 3),
-                curve: Curves.easeInOut,
-                child: Image.asset('assets/images/Boy.png', width: 120, height: 120),
+              Positioned(
+                top: -35,
+                child: SlideTransition(
+                  position: boyAnimation,
+                  child: Image.asset(
+                    'assets/images/Boy.png',
+                    width: 180,
+                    height: 150,
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 2,
+                child: SlideTransition(
+                  position: girlAnimation,
+                  child: Image.asset(
+                    'assets/images/Girl.png',
+                    width: 50,
+                    height: 50,
+                  ),
+                ),
               ),
             ],
           ),
-          Image.asset(
-            'assets/images/Battle-Box.png',
-            width: MediaQuery.of(context).size.width - 30,
-            fit: BoxFit.cover,
-          ),
+          Stack(
+            children: [
+              Image.asset(
+                'assets/images/Battle-Box.png',
+                width: 359,
+                fit: BoxFit.cover,
+              ),
+              Positioned(
+                top: 25,
+                left: 20,
+                child: boyStop && girlStop ? Container(
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      TyperAnimatedText('Hazim gorgon sudah tiba !', speed: Duration(milliseconds: 100), textStyle: TextStyle(color: Colors.white)),
+                      TyperAnimatedText('Apa yang awak akan lakukan ?', speed: Duration(milliseconds: 100), textStyle: TextStyle(color: Colors.white)),
+                    ],
+                    isRepeatingAnimation: false,
+                  ),
+                ) : Container(),
+              )
+            ],
+          )
         ],
       ),
     );
