@@ -59,16 +59,205 @@ class _QuizInterfaceState extends State<QuizInterface> {
               center: Text('${love.toStringAsFixed(2)}%'),
             ),
           ),
-          content: Container(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              autofocus: true,
-              child: Text('Close'),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                if (love >= 70)
+                  Container(
+                    width: 48,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF81C784),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 12,
+                          top: 16,
+                          child: Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          right: 12,
+                          top: 16,
+                          child: Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 8,
+                          left: 11.5,
+                          child: Container(
+                            width: 24,
+                            height: 10,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(100),
+                                bottomRight: Radius.circular(100),
+                              ),
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                if (love >= 50 && love < 70)
+                  Container(
+                    width: 48,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFFFFEE58),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 12,
+                          top: 16,
+                          child: Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          right: 12,
+                          top: 16,
+                          child: Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 10,
+                          left: 11.5,
+                          child: Container(
+                            width: 24,
+                            height: 5,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                if (love < 50)
+                  Container(
+                    width: 48,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.red,
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                            left: 7,
+                            top: 13,
+                            child: Transform.rotate(
+                              angle: 35,
+                              child: Container(
+                                width: 16,
+                                height: 4,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            )
+                        ),
+                        Positioned(
+                            right: 7,
+                            top: 13,
+                            child: Transform.rotate(
+                              angle: -35,
+                              child: Container(
+                                width: 16,
+                                height: 4,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            )
+                        ),
+                        Positioned(
+                          left: 12,
+                          top: 16,
+                          child: Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          right: 12,
+                          top: 16,
+                          child: Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 10,
+                          left: 11.5,
+                          child: Container(
+                            width: 24,
+                            height: 5,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(100),
+                                topRight: Radius.circular(100),
+                              ),
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  autofocus: true,
+                  child: Text('Close'),
+                ),
+              ],
             ),
-          ),
+          )
         )
       );
     }
