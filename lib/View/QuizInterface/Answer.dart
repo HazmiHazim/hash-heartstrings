@@ -21,7 +21,7 @@ class Answer extends StatelessWidget {
         decoration: BoxDecoration(
           color: quizModel.answerColor,
           border: Border.all(color: Colors.blue),
-          borderRadius: BorderRadius.circular(20)
+          borderRadius: BorderRadius.circular(50)
         ),
         child: Text(
           quizModel.pilihanJawapan,
