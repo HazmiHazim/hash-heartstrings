@@ -56,31 +56,38 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                               ),
                             ),
                             Row(children: [
-                              ElevatedButton(
-                                onPressed: () {
-                                  String value =_textController.text;
-                                  //Event Occur When Click Button Save
-                                  Navigator.pop(context);
-                                  var currentDate = DateTime.now();
-                                  DatePicker.showTimePicker(context, showSecondsColumn: false, showTitleActions: true, onChanged: (date) {}, onConfirm: (date) {
-                                    if(value.isNotEmpty) {
-                                      var datePlannerModel = DatePlannerModel.create(activityName: value, createdAt: date);
-                                      base.dateController.createDateActivity(datePlannerModel: datePlannerModel);
-                                    }
-                                  }, currentTime: DateTime.now());
-                                },
-                                autofocus: true,
-                                style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
-                                child: const Text('Save'),
+                              Expanded(
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    String value =_textController.text;
+                                    //Event Occur When Click Button Save
+                                    Navigator.pop(context);
+                                    var currentDate = DateTime.now();
+                                    DatePicker.showTimePicker(context, showSecondsColumn: false, showTitleActions: true, onChanged: (date) {}, onConfirm: (date) {
+                                      if(value.isNotEmpty) {
+                                        var datePlannerModel = DatePlannerModel.create(activityName: value, createdAt: date);
+                                        base.dateController.createDateActivity(datePlannerModel: datePlannerModel);
+                                      }
+                                    }, currentTime: DateTime.now());
+                                  },
+                                  autofocus: true,
+                                  style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
+                                  child: const Text('Save'),
+                                ),
                               ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pop(context); //Close Dialog Box
-                                },
-                                autofocus: true,
-                                style: ElevatedButton.styleFrom(primary: const Color(0xFFFF69B4)),
-                                child: const Text('Cancel'),
+                              const SizedBox(
+                                width: 5,
                               ),
+                              Expanded(
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context); //Close Dialog Box
+                                  },
+                                  autofocus: true,
+                                  style: ElevatedButton.styleFrom(primary: const Color(0xFFFF69B4)),
+                                  child: const Text('Cancel'),
+                                ),
+                              )
                             ])
                           ],
                         )

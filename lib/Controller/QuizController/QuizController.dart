@@ -1,4 +1,4 @@
-import 'package:hash_heartstring/Controller/QuizController/Question.dart';
+import 'package:hash_heartstring/Model/QuizModel/Question.dart';
 
 class QuizController {
   //To Be Edited

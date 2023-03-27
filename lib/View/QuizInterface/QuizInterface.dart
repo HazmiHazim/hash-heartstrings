@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hash_heartstring/Model/QuizModel/QuizModel.dart';
 import 'package:hash_heartstring/View/QuizInterface/Answer.dart';
-import 'package:hash_heartstring/Controller/QuizController/Question.dart';
+import 'package:hash_heartstring/Model/QuizModel/Question.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
 class QuizInterface extends StatefulWidget {
@@ -43,13 +43,12 @@ class _QuizInterfaceState extends State<QuizInterface> {
 
     double love = (totalScore / Question.question.length) * 100;
     double loveProgress = love / 100;
-    double progressValue = 0;
 
     if (quizEnd) {
       showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          backgroundColor: Color(0xFFE6E6FA),
+          backgroundColor: const Color(0xFFE6E6FA),
           title: Container(
             alignment: Alignment.center,
             child: LiquidCustomProgressIndicator(
@@ -66,7 +65,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                   Container(
                     width: 48,
                     height: 48,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Color(0xFF81C784),
                     ),
@@ -78,7 +77,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                           child: Container(
                             width: 8,
                             height: 8,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.black,
                             ),
@@ -90,7 +89,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                           child: Container(
                             width: 8,
                             height: 8,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.black,
                             ),
@@ -102,7 +101,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                           child: Container(
                             width: 24,
                             height: 10,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(100),
@@ -119,7 +118,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                   Container(
                     width: 48,
                     height: 48,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Color(0xFFFFEE58),
                     ),
@@ -131,7 +130,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                           child: Container(
                             width: 8,
                             height: 8,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.black,
                             ),
@@ -143,7 +142,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                           child: Container(
                             width: 8,
                             height: 8,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.black,
                             ),
@@ -169,7 +168,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                   Container(
                     width: 48,
                     height: 48,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.red,
                     ),
@@ -183,7 +182,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                               child: Container(
                                 width: 16,
                                 height: 4,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.rectangle,
                                   color: Colors.black,
                                 ),
@@ -198,7 +197,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                               child: Container(
                                 width: 16,
                                 height: 4,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.rectangle,
                                   color: Colors.black,
                                 ),
@@ -211,7 +210,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                           child: Container(
                             width: 8,
                             height: 8,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.black,
                             ),
@@ -223,7 +222,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                           child: Container(
                             width: 8,
                             height: 8,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.black,
                             ),
@@ -235,7 +234,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                           child: Container(
                             width: 24,
                             height: 5,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(100),
@@ -248,12 +247,42 @@ class _QuizInterfaceState extends State<QuizInterface> {
                       ],
                     ),
                   ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  autofocus: true,
-                  child: Text('Close'),
+                if (love >= 70)
+                  Container(
+                    alignment: Alignment.center,
+                    child: const Text(
+                        '🎉🎉🎉 Tahniah Anda Telah Berjaya Mengenali Hazmi Hazim Sepenuhnya. Sila Screenshot Ini Dan Send Sebagai Bukti Anda Menyayanginya🎉🎉🎉\n♥♥♥',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.pinkAccent, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                    ),
+                  ),
+                if (love >= 50 && love < 70)
+                  Container(
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'Awak Sayang Saya Banyak Ni Je ? Takpelah, Okay la Dari Tak Sayang ♥',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.pinkAccent, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                    ),
+                  ),
+                if (love < 50)
+                  Container(
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'Awak Kene Kahwin Ngan Saya Cepat Ni.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.pinkAccent, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                    ),
+                  ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    autofocus: true,
+                    child: const Text('Close'),
+                  ),
                 ),
               ],
             ),
@@ -272,10 +301,10 @@ class _QuizInterfaceState extends State<QuizInterface> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFE6E6FA),
+      backgroundColor: const Color(0xFFE6E6FA),
       appBar: AppBar(
-        backgroundColor: Color(0xFF87CEEB),
-        title: Text(
+        backgroundColor: const Color(0xFF87CEEB),
+        title: const Text(
             'Love Quiz',
             style: TextStyle(color: Colors.white)
         ),
@@ -288,8 +317,8 @@ class _QuizInterfaceState extends State<QuizInterface> {
             Container(
               width: double.infinity,
               height: 130.0,
-              margin: EdgeInsets.only(bottom: 10, left: 30, right: 30),
-              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+              margin: const EdgeInsets.only(bottom: 10, left: 30, right: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
               decoration: BoxDecoration(
                 color: const Color(0xFFFF69B4),
                 borderRadius: BorderRadius.circular(10),
@@ -298,7 +327,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
                 child: Text(
                   Question.question[questionIndex]['soalan'],
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                     fontWeight: FontWeight.bold
@@ -322,8 +351,8 @@ class _QuizInterfaceState extends State<QuizInterface> {
             ))).toList(),
             //Event occur when user complete 1 question
             Container(
-              padding: EdgeInsets.all(20),
-              child: Text('${totalScore.toString()}/${Question.question.length}', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+              padding: const EdgeInsets.all(20),
+              child: Text('${totalScore.toString()}/${Question.question.length}', style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
             ),
             //Button Next Page is Shown When User Finish Answer the Question
             if (answerIsSelected)

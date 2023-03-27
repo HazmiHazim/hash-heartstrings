@@ -15,8 +15,8 @@ class Answer extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       onTap: quizModel.answerClick,
       child: Container(
-        padding: EdgeInsets.all(15),
-        margin: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+        padding: const EdgeInsets.all(15),
+        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
         width: double.infinity,
         decoration: BoxDecoration(
           color: quizModel.answerColor,
@@ -25,7 +25,7 @@ class Answer extends StatelessWidget {
         ),
         child: Text(
           quizModel.pilihanJawapan,
-          style: TextStyle(fontSize: 15),
+          style: const TextStyle(fontSize: 15, fontStyle: FontStyle.italic),
         ),
       ),
     );
