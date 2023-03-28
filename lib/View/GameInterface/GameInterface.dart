@@ -16,7 +16,8 @@ class _GameInterfaceState extends State<GameInterface> {
   bool play = false;
 
   //Initialize Game Controller
-  final GameController gameController = GameController();
+  GameController gameController = GameController(Offset(0, 0));
+
 
   @override
   void dispose() {
@@ -28,6 +29,8 @@ class _GameInterfaceState extends State<GameInterface> {
   Widget build(BuildContext context) {
     //Initialize Flame Audio Background Music
     FlameAudio.bgm.initialize();
+    Offset currentPosition = gameController.position;
+
     return Scaffold(
       backgroundColor: Color(0xFFE6E6FA),
       appBar: AppBar(
@@ -72,21 +75,22 @@ class _GameInterfaceState extends State<GameInterface> {
                                 GameBoyButton(text: '←', function: (){
                                   Container();
                                   gameController.buttonLeft();
+                                  setState((){});
                                 }),
                                 Container(height: 50, width: 50),
                               ],
                             ),
                             Column(
                               children: [
-                                GameBoyButton(text: '↑', function: (){gameController.buttonUp();}),
+                                GameBoyButton(text: '↑', function: (){gameController.buttonUp();setState((){});}),
                                 Container(height: 50, width: 50),
-                                GameBoyButton(text: '↓', function: (){gameController.bottonDown();}),
+                                GameBoyButton(text: '↓', function: (){gameController.buttonDown();setState((){});}),
                               ],
                             ),
                             Column(
                               children: [
                                 Container(height: 50, width: 50),
-                                GameBoyButton(text: '→', function: (){gameController.buttonRight();}),
+                                GameBoyButton(text: '→', function: (){gameController.buttonRight();setState((){});}),
                                 Container(height: 50, width: 50),
                               ],
                             )

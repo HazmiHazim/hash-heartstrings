@@ -1,30 +1,37 @@
-class GameController {
+import 'package:flutter/material.dart';
 
-  int x = 0;
-  int y = 0;
+class GameController {
+  final Offset _initialPosition;
+  late Offset _position;
+
+  GameController(this._initialPosition) {
+    _position = _initialPosition;
+  }
+
+  Offset get position => _position;
 
   //Move Up
   void buttonUp() {
     //Move Up
-    y--;
+    _position = _position.translate(0, -10);
   }
 
   //Method To Move Down
-  void bottonDown() {
+  void buttonDown() {
     //Move Down
-    y++;
+    _position = _position.translate(0, 10);
   }
 
   //Method To Move Left
   void buttonLeft() {
     //Move Left
-    x--;
+    _position = _position.translate(-10, 0);
   }
 
   //Method To Move Right
   void buttonRight() {
     //Move Right
-    x++;
+    _position = _position.translate(10, 0);
   }
 
   //Method To Select / Enter

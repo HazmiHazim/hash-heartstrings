@@ -11,6 +11,7 @@
       eva_icons_flutter: ^3.1.0
       curved_navigation_bar: ^1.0.3
       liquid_progress_indicator: ^0.4.0
+      animated_text_kit: ^4.2.2
    
   dev_dependencies:
       hive_generator: ^2.0.0

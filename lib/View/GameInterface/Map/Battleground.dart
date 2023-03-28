@@ -1,5 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:hash_heartstring/Controller/GameController/GameController.dart';
+import 'package:hash_heartstring/View/GameInterface/GameBoyButton.dart';
 
 class Battleground extends StatefulWidget {
   const Battleground({Key? key}) : super(key: key);
@@ -16,6 +18,12 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
   late Animation<Offset> girlAnimation;
   bool boyStop = false;
   bool girlStop = false;
+  bool buttonIsClick = false;
+
+  // Define the initial position of the container
+  Offset containerPosition = Offset(0, 0);
+
+  GameController gameController = GameController(Offset(0, 0));
 
   @override
   void initState() {
@@ -68,6 +76,14 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
 
     // Start the animation
     girlController.forward();
+  }
+
+  // This method updates the position of the container
+  void moveContainer() {
+    setState(() {
+      // Update the position of the container by adding 10 to the x-coordinate
+      containerPosition += Offset(10, 0);
+    });
   }
 
   @override
