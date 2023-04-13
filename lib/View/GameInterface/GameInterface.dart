@@ -14,9 +14,10 @@ class GameInterface extends StatefulWidget {
 class _GameInterfaceState extends State<GameInterface> {
 
   bool play = false;
+  bool select = false;
 
   //Initialize Game Controller
-  GameController gameController = GameController(Offset(0, 0));
+  final GameController gameController = GameController(Offset.zero);
 
 
   @override
@@ -29,7 +30,6 @@ class _GameInterfaceState extends State<GameInterface> {
   Widget build(BuildContext context) {
     //Initialize Flame Audio Background Music
     FlameAudio.bgm.initialize();
-    Offset currentPosition = gameController.position;
 
     return Scaffold(
       backgroundColor: Color(0xFFE6E6FA),
@@ -47,11 +47,7 @@ class _GameInterfaceState extends State<GameInterface> {
             flex: 2,
             child: Container(
               color: Colors.black,
-              child: Stack(
-                children: [
-                  Battleground(),
-                ],
-              ),
+              child: Battleground(select: select),
             ),
           ),
           Expanded(
@@ -111,7 +107,7 @@ class _GameInterfaceState extends State<GameInterface> {
                             ),
                             Column(
                               children: [
-                                GameBoyButton(text: 'a', function: (){}),
+                                GameBoyButton(text: 'a', function: (){setState(() {select = true;});}),
                                 Container(height: 50, width: 50),
                               ],
                             )

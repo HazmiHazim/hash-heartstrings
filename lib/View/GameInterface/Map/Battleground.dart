@@ -1,10 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:hash_heartstring/Controller/GameController/GameController.dart';
-import 'package:hash_heartstring/View/GameInterface/GameBoyButton.dart';
 
 class Battleground extends StatefulWidget {
-  const Battleground({Key? key}) : super(key: key);
+  final bool select;
+
+  const Battleground({required this.select, Key? key}) : super(key: key);
 
   @override
   State<Battleground> createState() => _BattlegroundState();
@@ -23,7 +24,8 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
   // Define the initial position of the container
   Offset containerPosition = Offset(0, 0);
 
-  GameController gameController = GameController(Offset(0, 0));
+  //Initialize Game Controller
+  final GameController gameController = GameController(Offset.zero);
 
   @override
   void initState() {
@@ -79,10 +81,10 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
   }
 
   // This method updates the position of the container
-  void moveContainer() {
+  void moveContainer(Offset newPosition) {
     setState(() {
       // Update the position of the container by adding 10 to the x-coordinate
-      containerPosition += Offset(10, 0);
+      containerPosition = newPosition;
     });
   }
 
@@ -124,7 +126,48 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
               ),
             ],
           ),
-          Stack(
+          widget.select ? Stack(
+            children: [
+              Image.asset(
+                'assets/images/Battle-Box.png',
+                width: 359,
+                fit: BoxFit.cover,
+              ),
+              Positioned(
+                top: 17,
+                left: 20,
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    TyperAnimatedText('Apa yang awak akan\nlakukan ?', speed: Duration(milliseconds: 100), textStyle: TextStyle(color: Colors.white))
+                  ],
+                  isRepeatingAnimation: false,
+                ),
+              ),
+              Positioned(
+                right: 2,
+                child: Container(
+                  width: 159,
+                  height: 69,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      // Add your child widgets here
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ) : Stack(
             children: [
               Image.asset(
                 'assets/images/Battle-Box.png',

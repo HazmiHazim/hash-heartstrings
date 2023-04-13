@@ -5,10 +5,7 @@ class GameBoyButton extends StatelessWidget {
   final text;
   final function;
 
-  GameBoyButton({
-    this.text,
-    this.function
-});
+  const GameBoyButton({Key? key, required this.text, required this.function}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

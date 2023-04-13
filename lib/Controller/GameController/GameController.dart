@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class GameController {
   final Offset _initialPosition;
   late Offset _position;
+  bool select = false;
 
   GameController(this._initialPosition) {
     _position = _initialPosition;
@@ -37,6 +38,7 @@ class GameController {
   //Method To Select / Enter
   void buttonA() {
     //Select
+    select == true;
   }
 
   //Method To Back / Undo
