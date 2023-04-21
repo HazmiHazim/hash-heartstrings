@@ -94,9 +94,9 @@ class Question {
       'soalan': 'Apakah Yang Membuatkan Hazim Gembira?',
       'jawapan': [
         {'pilihanJawapan': 'Main Dota', 'score': false},
-        {'pilihanJawapan': 'Siti Nor Aishah Binti Mohammad Noor', 'score': true},
-        {'pilihanJawapan': 'Makan', 'score': false},
         {'pilihanJawapan': 'Tidur', 'score': false},
+        {'pilihanJawapan': 'Makan', 'score': false},
+        {'pilihanJawapan': 'Siti Nor Aishah Binti Mohammad Noor', 'score': true},
         {'pilihanJawapan': 'Berak', 'score': false},
       ]
     },
