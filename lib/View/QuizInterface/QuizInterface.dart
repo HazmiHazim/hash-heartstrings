@@ -18,6 +18,12 @@ class _QuizInterfaceState extends State<QuizInterface> {
   bool answerIsSelected = false;
   bool quizEnd = false;
 
+  @override
+  void initState() {
+    super.initState();
+    Question.shuffleQuestions();
+  }
+
   //Create Logic When User Answer The Question
   void questionAnswered(bool answerScore) {
     setState(() {
@@ -45,6 +51,7 @@ class _QuizInterfaceState extends State<QuizInterface> {
     double loveProgress = love / 100;
 
     if (quizEnd) {
+      Question.shuffleQuestions();
       showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(

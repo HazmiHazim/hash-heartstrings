@@ -20,7 +20,7 @@ class Answer extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           color: quizModel.answerColor,
-          border: Border.all(color: Colors.blue),
+          border: Border.all(color: const Color(0xFFFF69B4)),
           borderRadius: BorderRadius.circular(50)
         ),
         child: Text(

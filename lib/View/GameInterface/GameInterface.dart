@@ -40,7 +40,7 @@ class _GameInterfaceState extends State<GameInterface> {
       appBar: AppBar(
         backgroundColor: Color(0xFF87CEEB),
         title: Text(
-            'Hazim x Aishah Game',
+            'Gorgon Game',
             style: TextStyle(color: Colors.white)
         ),
         centerTitle: true,
