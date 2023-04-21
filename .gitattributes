@@ -1,3 +1,4 @@
 D:/Secret[[:space:]]Admire/hash_heartstring/assets/video filter=lfs diff=lfs merge=lfs -text
 assets/video/*.mp4 filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
+assets/video/Couple-Video.mp4 filter=lfs diff=lfs merge=lfs -text
