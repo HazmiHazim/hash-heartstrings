@@ -159,7 +159,7 @@ class _HomeInterfaceState extends State<HomeInterface> {
                   animatedTexts: [
                     ColorizeAnimatedText('CLICK ME !!!', textStyle: colorizeTextStyle, colors: beautifulColor)
                   ],
-                  isRepeatingAnimation: true,
+                  isRepeatingAnimation: false,
                 )
               ],
             ),
