@@ -36,7 +36,7 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
 
     // Animation For Boy
     boyController = AnimationController(
-      duration: const Duration(seconds: 10),
+      duration: const Duration(seconds: 7),
       vsync: this,
     );
 
@@ -71,7 +71,7 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
 
     // Set up the animation to stop at a specific position
     girlAnimation.addListener(() {
-      if (girlAnimation.value.dx > 0.95) {
+      if (girlAnimation.value.dx > 0.40) {
         girlController.stop();
         setState(() {
           girlStop = true;
@@ -114,8 +114,8 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
                   position: girlAnimation,
                   child: Image.asset(
                     'assets/images/Girl.png',
-                    width: 50,
-                    height: 50,
+                    width: 100,
+                    height: 120,
                   ),
                 ),
               ),

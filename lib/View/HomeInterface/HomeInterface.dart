@@ -25,6 +25,18 @@ class _HomeInterfaceState extends State<HomeInterface> {
 
   @override
   Widget build(BuildContext context) {
+    const beautifulColor = [
+      Colors.purple,
+      Colors.blue,
+      Colors.yellow,
+      Colors.red,
+    ];
+
+    const colorizeTextStyle = TextStyle(
+      fontSize: 50.0,
+      fontFamily: 'Horizon',
+    );
+
     return Scaffold(
       backgroundColor: const Color(0xFFE6E6FA),
       appBar: AppBar(
@@ -131,9 +143,25 @@ class _HomeInterfaceState extends State<HomeInterface> {
                 openWishCard = true;
               });
             },
-            child: Container(
-              alignment: Alignment.center,
-              child: Image.asset('assets/images/love2.png'),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                AnimatedTextKit(
+                  animatedTexts: [
+                    ColorizeAnimatedText('CLICK ME !!!', textStyle: colorizeTextStyle, colors: beautifulColor)
+                  ],
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Image.asset('assets/images/love2.png'),
+                ),
+                AnimatedTextKit(
+                  animatedTexts: [
+                    ColorizeAnimatedText('CLICK ME !!!', textStyle: colorizeTextStyle, colors: beautifulColor)
+                  ],
+                  isRepeatingAnimation: true,
+                )
+              ],
             ),
           )
         ],
