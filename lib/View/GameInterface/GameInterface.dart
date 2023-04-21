@@ -15,16 +15,20 @@ class _GameInterfaceState extends State<GameInterface> {
 
   bool play = false;
   bool select = false;
+  bool moveUp = false;
+  bool moveDown = false;
+  bool moveLeft = false;
+  bool moveRight = false;
 
   //Initialize Game Controller
   final GameController gameController = GameController(Offset.zero);
-
 
   @override
   void dispose() {
     FlameAudio.bgm.stop();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +51,13 @@ class _GameInterfaceState extends State<GameInterface> {
             flex: 2,
             child: Container(
               color: Colors.black,
-              child: Battleground(select: select),
+              child: Battleground(
+                select: select,
+                moveUp: moveUp,
+                moveDown: moveDown,
+                moveLeft: moveLeft,
+                moveRight: moveRight,
+              ),
             ),
           ),
           Expanded(
@@ -68,25 +78,21 @@ class _GameInterfaceState extends State<GameInterface> {
                             Column(
                               children: [
                                 Container(height: 50, width: 50),
-                                GameBoyButton(text: '←', function: (){
-                                  Container();
-                                  gameController.buttonLeft();
-                                  setState((){});
-                                }),
+                                GameBoyButton(text: '←', function: (){setState(() {moveLeft = true;gameController.buttonLeft();});}),
                                 Container(height: 50, width: 50),
                               ],
                             ),
                             Column(
                               children: [
-                                GameBoyButton(text: '↑', function: (){gameController.buttonUp();setState((){});}),
+                                GameBoyButton(text: '↑', function: (){setState(() {moveUp = true;gameController.buttonUp();});}),
                                 Container(height: 50, width: 50),
-                                GameBoyButton(text: '↓', function: (){gameController.buttonDown();setState((){});}),
+                                GameBoyButton(text: '↓', function: (){setState(() {moveDown = true;gameController.buttonDown();});}),
                               ],
                             ),
                             Column(
                               children: [
                                 Container(height: 50, width: 50),
-                                GameBoyButton(text: '→', function: (){gameController.buttonRight();setState((){});}),
+                                GameBoyButton(text: '→', function: (){setState(() {moveRight = true;gameController.buttonRight();});}),
                                 Container(height: 50, width: 50),
                               ],
                             )
@@ -107,7 +113,7 @@ class _GameInterfaceState extends State<GameInterface> {
                             ),
                             Column(
                               children: [
-                                GameBoyButton(text: 'a', function: (){setState(() {select = true;});}),
+                                GameBoyButton(text: 'a', function: (){setState(() {select=true;});}),
                                 Container(height: 50, width: 50),
                               ],
                             )

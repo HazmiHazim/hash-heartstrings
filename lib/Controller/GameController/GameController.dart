@@ -11,7 +11,7 @@ class GameController {
 
   Offset get position => _position;
 
-  //Move Up
+  //Method To Move Up
   void buttonUp() {
     //Move Up
     _position = _position.translate(0, -10);
@@ -33,12 +33,6 @@ class GameController {
   void buttonRight() {
     //Move Right
     _position = _position.translate(10, 0);
-  }
-
-  //Method To Select / Enter
-  void buttonA() {
-    //Select
-    select == true;
   }
 
   //Method To Back / Undo

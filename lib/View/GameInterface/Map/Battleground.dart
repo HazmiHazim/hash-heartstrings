@@ -4,8 +4,12 @@ import 'package:hash_heartstring/Controller/GameController/GameController.dart';
 
 class Battleground extends StatefulWidget {
   final bool select;
+  final bool moveUp;
+  final bool moveDown;
+  final bool moveLeft;
+  final bool moveRight;
 
-  const Battleground({required this.select, Key? key}) : super(key: key);
+  const Battleground({required this.select, required this.moveUp, required this.moveDown, required this.moveLeft, required this.moveRight, Key? key}) : super(key: key);
 
   @override
   State<Battleground> createState() => _BattlegroundState();
@@ -19,7 +23,6 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
   late Animation<Offset> girlAnimation;
   bool boyStop = false;
   bool girlStop = false;
-  bool buttonIsClick = false;
 
   // Define the initial position of the container
   Offset containerPosition = Offset(0, 0);
@@ -78,14 +81,6 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
 
     // Start the animation
     girlController.forward();
-  }
-
-  // This method updates the position of the container
-  void moveContainer(Offset newPosition) {
-    setState(() {
-      // Update the position of the container by adding 10 to the x-coordinate
-      containerPosition = newPosition;
-    });
   }
 
   @override
@@ -159,9 +154,40 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
                       ),
                     ],
                   ),
-                  child: Column(
+                  child: Stack(
                     children: [
-                      // Add your child widgets here
+                      Positioned(
+                        bottom: 40,
+                        right: 100,
+                        child: Text('KATOK'),
+                      ),
+                      Positioned(
+                        bottom: 10,
+                        right: 100,
+                        child: Text('PELUK'),
+                      ),
+                      Positioned(
+                        bottom: 40,
+                        right: 20,
+                        child: Text('CIUM'),
+                      ),
+                      Positioned(
+                        bottom: 10,
+                        right: 20,
+                        child: Text('MAKI'),
+                      ),
+                      Positioned(
+                        right: 90,
+                        bottom: 40,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              border: Border.all(color: Colors.black)
+                          ),
+                          width: 60,
+                          height: 20,
+                        ),
+                      ),
                     ],
                   ),
                 ),
