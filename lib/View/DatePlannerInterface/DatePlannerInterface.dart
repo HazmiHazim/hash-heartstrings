@@ -1,8 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:hash_heartstring/Model/DatePlannerModel/DatePlannerModel.dart';
-import 'package:hash_heartstring/main.dart';
-import 'package:hive/hive.dart';
+import 'package:hash_heartstring/Controller/DatePlannerController/DatePlannerController.dart';
 import 'package:intl/intl.dart';
 
 class DatePlannerInterface extends StatefulWidget {
@@ -13,18 +12,37 @@ class DatePlannerInterface extends StatefulWidget {
 }
 
 class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
-  //Initialize Text Editing Controller
+  // Initialize Text Editing Controller
   final TextEditingController _textController = TextEditingController();
+
+  //
+  final FirebaseFirestore db = FirebaseFirestore.instance;
+  
+  // Initialize Date Planner Controller Class
+  final DatePlannerController datePlannerController = new DatePlannerController();
 
   @override
   Widget build(BuildContext context) {
-    final base = BaseWidget.of(context);
-    final plannerBox = base.dateController.box;
-    return ValueListenableBuilder(
-      valueListenable: base.dateController.listenToActivity(),
-      builder: (BuildContext context, Box<DatePlannerModel> box, Widget? child) {
-        var datePlannerBox = box.values.toList();
-        datePlannerBox.sort((a, b) => a.createdAt.compareTo(b.createdAt));
+    return StreamBuilder<QuerySnapshot>(
+      stream: db.collection('dateActivity').orderBy('createdAt').snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return const Center(
+            child: Text('Error occurred while retrieving data.'),
+          );
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        final List<QueryDocumentSnapshot> datePlannerDocs = snapshot.data!.docs;
+        final List<DatePlannerModel> datePlannerBox = datePlannerDocs
+            .map((doc) => DatePlannerModel.fromSnapshot(doc))
+            .toList();
+
         return Scaffold(
           backgroundColor: const Color(0xFFE6E6FA),
           appBar: AppBar(
@@ -63,12 +81,8 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                                     //Event Occur When Click Button Save
                                     Navigator.pop(context);
                                     var currentDate = DateTime.now();
-                                    DatePicker.showTimePicker(context, showSecondsColumn: false, showTitleActions: true, onChanged: (date) {}, onConfirm: (date) {
-                                      if(value.isNotEmpty) {
-                                        var datePlannerModel = DatePlannerModel.create(activityName: value, createdAt: date);
-                                        base.dateController.createDateActivity(datePlannerModel: datePlannerModel);
-                                      }
-                                    }, currentTime: DateTime.now());
+                                    datePlannerController.createDateActivity(value, currentDate);
+                                    _textController.clear();
                                   },
                                   autofocus: true,
                                   style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
@@ -122,7 +136,7 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                     ],
                   ),
                   onDismissed: (direction) {
-                    base.dateController.deleteDateActivity(datePlannerModel: datePlannerModel);
+                    datePlannerController.deleteDateActivity(datePlannerModel.id);
                   },
                   key: Key(datePlannerModel.id),
                   child: Column(
@@ -146,7 +160,7 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                             leading: GestureDetector(
                               onTap: (){
                                 datePlannerModel.isCompleted = !datePlannerModel.isCompleted;
-                                base.dateController.updateDateActivity(datePlannerModel: datePlannerModel);
+                                datePlannerController.updateDateActivity(datePlannerModel.id, datePlannerModel.activityName);
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -170,7 +184,7 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                               onSubmitted: (value) {
                                 if(value.isNotEmpty) {
                                   datePlannerModel.activityName = value;
-                                  base.dateController.updateDateActivity(datePlannerModel: datePlannerModel);
+                                  datePlannerController.updateDateActivity(datePlannerModel.id, value);
                                 }
                               },
                             ),

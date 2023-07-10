@@ -1,29 +1,25 @@
-import 'package:hive/hive.dart';
-import 'package:uuid/uuid.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-part 'DatePlannerModel.g.dart';
-
-@HiveType(typeId: 0)
-class DatePlannerModel extends HiveObject {
-  @HiveField(0)
+class DatePlannerModel {
   final String id;
-  @HiveField(1)
   String activityName;
-  @HiveField(2)
-  final DateTime createdAt;
-  @HiveField(3)
+  DateTime createdAt;
   bool isCompleted;
 
-  DatePlannerModel({
+  DatePlannerModel ({
     required this.id,
     required this.activityName,
     required this.createdAt,
-    required this.isCompleted,
+    required this.isCompleted
   });
 
-  factory DatePlannerModel.create({required String activityName, DateTime? createdAt}) =>
-      DatePlannerModel(id: Uuid().v4(),
-          activityName: activityName,
-          createdAt: createdAt ?? DateTime.now(),
-          isCompleted: false);
+  factory DatePlannerModel.fromSnapshot(QueryDocumentSnapshot snapshot) {
+    final data = snapshot.data() as Map<String, dynamic>;
+    return DatePlannerModel(
+      id: snapshot.id,
+      activityName: data['activityName'] ?? '',
+      createdAt: (data['createdAt'] as Timestamp).toDate(),
+      isCompleted: data['isCompleted'] ?? false,
+    );
+  }
 }
