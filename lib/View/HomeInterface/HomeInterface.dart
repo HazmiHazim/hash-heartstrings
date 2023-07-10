@@ -14,14 +14,14 @@ class _HomeInterfaceState extends State<HomeInterface> {
   late VideoPlayerController controller;
   bool textIsFinish = false;
 
-  @override
+  /*@override
   void initState() {
     super.initState();
     controller = VideoPlayerController.asset('assets/video/Couple-Video.mp4')
       ..initialize().then((_) {
         setState(() {});
       });
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
