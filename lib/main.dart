@@ -1,8 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hash_heartstring/Controller/DatePlannerController/DatePlannerController.dart';
-import 'package:hash_heartstring/Model/DatePlannerModel/DatePlannerModel.dart';
 import 'package:hash_heartstring/View/DatePlannerInterface/DatePlannerInterface.dart';
 import 'package:hash_heartstring/View/GameInterface/GameInterface.dart';
 import 'package:hash_heartstring/View/HomeInterface/HomeInterface.dart';
@@ -10,6 +8,7 @@ import 'package:hash_heartstring/View/QuizInterface/QuizInterface.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   //Initialize Firebase
   await Firebase.initializeApp();
 
