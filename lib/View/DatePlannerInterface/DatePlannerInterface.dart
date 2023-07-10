@@ -160,7 +160,7 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                             leading: GestureDetector(
                               onTap: (){
                                 datePlannerModel.isCompleted = !datePlannerModel.isCompleted;
-                                datePlannerController.updateDateActivity(datePlannerModel.id, datePlannerModel.activityName);
+                                datePlannerController.updateDateActivity(datePlannerModel.id, datePlannerModel.activityName, datePlannerModel.isCompleted);
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -184,7 +184,7 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                               onSubmitted: (value) {
                                 if(value.isNotEmpty) {
                                   datePlannerModel.activityName = value;
-                                  datePlannerController.updateDateActivity(datePlannerModel.id, value);
+                                  datePlannerController.updateDateActivity(datePlannerModel.id, value, datePlannerModel.isCompleted);
                                 }
                               },
                             ),

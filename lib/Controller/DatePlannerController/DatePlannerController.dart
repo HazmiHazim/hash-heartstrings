@@ -13,9 +13,10 @@ class DatePlannerController {
   }
 
   // Method To Update DateActivity
-  Future<void> updateDateActivity(String activityId, String activityName) async {
+  Future<void> updateDateActivity(String activityId, String activityName, bool isCompleted) async {
     await db.collection('dateActivity').doc(activityId).update({
       'activityName': activityName,
+      'isCompleted' : isCompleted,
     });
   }
 
