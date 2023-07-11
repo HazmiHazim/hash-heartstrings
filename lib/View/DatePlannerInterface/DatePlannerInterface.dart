@@ -19,7 +19,7 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   
   // Initialize Date Planner Controller Class
-  final DatePlannerController datePlannerController = new DatePlannerController();
+  final DatePlannerController datePlannerController = DatePlannerController();
 
   @override
   Widget build(BuildContext context) {
