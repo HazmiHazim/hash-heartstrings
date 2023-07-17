@@ -24,6 +24,9 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
   bool boyStop = false;
   bool girlStop = false;
 
+  // set player health to 100;
+  double playerHealth = 100.0;
+
   // Define the initial position of the container
   Offset containerPosition = Offset(0, 0);
 
@@ -83,6 +86,32 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
     girlController.forward();
   }
 
+  // Player Action
+  playerAction() {
+    int action = 0;
+
+    if (action == 1 ) {
+      playerHealth - 20;
+    }
+    else if (action == 2) {
+      playerHealth + 10;
+    }
+    else if (action == 3) {
+      playerHealth - 20;
+    }
+    else if (action == 4) {
+      playerHealth - 10;
+    }
+  }
+
+  // Game Over
+  gameOver() {
+    if (playerHealth == 0) {
+      // create blank screen contain text
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -116,6 +145,29 @@ class _BattlegroundState extends State<Battleground> with TickerProviderStateMix
                     'assets/images/Girl.png',
                     width: 100,
                     height: 120,
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 30,
+                child: SlideTransition(
+                  position: boyAnimation,
+                  child: Container(
+                    width: 120,
+                    height: 20,
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Nyawa",
+                          textAlign: TextAlign.center,
+                        ),
+                        LinearProgressIndicator(
+                          value: playerHealth,
+                          backgroundColor: Colors.grey[300],
+                          valueColor: const AlwaysStoppedAnimation<Color>(Colors.red),
+                        ),
+                      ]
+                    ),
                   ),
                 ),
               ),
