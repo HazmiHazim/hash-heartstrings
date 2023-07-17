@@ -48,7 +48,7 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
           appBar: AppBar(
             backgroundColor: const Color(0xFF87CEEB),
             title: const Text(
-                'Dating Plan',
+                'Love Confession',
                 style: TextStyle(color: Colors.white)
             ),
             centerTitle: true,
