@@ -5,7 +5,6 @@ import 'package:hash_heartstring/View/DatePlannerInterface/DatePlannerInterface.
 import 'package:hash_heartstring/View/GameInterface/GameInterface.dart';
 import 'package:hash_heartstring/View/HomeInterface/HomeInterface.dart';
 import 'package:hash_heartstring/View/QuizInterface/QuizInterface.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

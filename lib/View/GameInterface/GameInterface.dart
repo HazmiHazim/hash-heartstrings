@@ -25,6 +25,7 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
   late Animation<Offset> girlAnimation;
   bool boyStop = false;
   bool girlStop = false;
+  bool showConfirmation = false;
 
   // set player health to 100;
   double playerHealth = 100.0;
@@ -89,6 +90,7 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
 
     // Start the animation
     girlController.forward();
+
   }
 
   Widget gameBoyButton(Function function, String text) {
@@ -119,32 +121,39 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
 
   // Player Action
   playerAction(GameController gameController) {
-
     // Action 1
-    if (gameController.position == Offset(0, 0) && gameController.valueButton == 1) {
-      playerHealth = playerHealth - 20.0;
+    if (gameController.valueButton == 2 && gameController.position == Offset(0.0, 0.0) ) {
+      gameController.selectedAction = 1;
+      showConfirmation = true;
+      punishment1(gameController);
+      print('showConfirmation: $showConfirmation');
     }
-
     // Action 2
-    if (gameController.position == Offset(0, 20.0) && gameController.valueButton == 1 ) {
-      playerHealth = playerHealth - 20.0;
+    else if (gameController.valueButton == 2 && gameController.position == Offset(0.0, 20.0)) {
+      gameController.selectedAction = 2;
+      showConfirmation = true;
+      punishment2(gameController);
+      print('showConfirmation: $showConfirmation');
     }
 
     // Action 3
-    if (gameController.position == Offset(50.0, 0) && gameController.valueButton == 1 ) {
-      playerHealth = playerHealth - 20.0;
+    else if (gameController.valueButton == 2 && gameController.position == Offset(50.0, 0.0)) {
+      gameController.selectedAction = 3;
+      showConfirmation = true;
+      punishment3(gameController);
+      print('showConfirmation: $showConfirmation');
     }
 
     // Action 4
-    if (gameController.position == Offset(50.0, 20.0) && gameController.valueButton == 1 ) {
-        playerHealth = playerHealth - 20.0;
+    else if (gameController.valueButton == 2 && gameController.position == Offset(50.0, 20.0)) {
+      gameController.selectedAction = 4;
+      showConfirmation = true;
+      punishment4(gameController);
+      print('showConfirmation: $showConfirmation');
     }
-  }
 
-  // Game Over
-  gameOver() {
-    if (playerHealth == 0) {
-      // create blank screen contain text
+    if (showConfirmation == true) {
+      return confirmAction(gameController);
     }
   }
 
@@ -191,17 +200,100 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
     );
   }
 
-  Widget gamePanel(GameController gameController) {
+  // Action 1 damage
+  punishment1(GameController gameController) {
+    int isConfirm;
 
+    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0)) {
+      isConfirm = 1;
+    }
+    else {
+      isConfirm = 0;
+      gameController.valueButton = gameController.valueButton - 1;
+    }
+
+    if (isConfirm == 1) {
+      playerHealth = playerHealth - 40;
+      print('Health: $playerHealth');
+    }
+    else {
+      showConfirmation = false;
+    }
+  }
+
+  // Action 2 damage
+  punishment2(GameController gameController) {
+    int isConfirm;
+
+    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0)) {
+      isConfirm = 1;
+    }
+    else {
+      isConfirm = 0;
+      gameController.valueButton = gameController.valueButton - 1;
+    }
+
+    if (isConfirm == 1) {
+      playerHealth = playerHealth - 30;
+      print('Health: $playerHealth');
+    }
+    else {
+      showConfirmation = false;
+    }
+  }
+
+  // Action 3 damage
+  punishment3(GameController gameController) {
+    int isConfirm;
+
+    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0)) {
+      isConfirm = 1;
+    }
+    else {
+      isConfirm = 0;
+      gameController.valueButton = gameController.valueButton - 1;
+    }
+
+    if (isConfirm == 1) {
+      playerHealth = playerHealth - 10;
+      print('Health: $playerHealth');
+    }
+    else {
+      showConfirmation = false;
+    }
+  }
+
+  // Action 4 damage
+  punishment4(GameController gameController) {
+    int isConfirm;
+
+    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0)) {
+      isConfirm = 1;
+    }
+    else {
+      isConfirm = 0;
+      gameController.valueButton = gameController.valueButton - 1;
+    }
+
+    if (isConfirm == 1) {
+      playerHealth = playerHealth + 10;
+      print('Health: $playerHealth');
+    }
+    else {
+      showConfirmation = false;
+    }
+  }
+
+  Widget gamePanel(GameController gameController) {
     if (boyStop == true && girlStop == true) {
-      if (gameController.valueButton == 1) {
+      if (gameController.valueButton == 1 && showConfirmation == false) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Stack(
               children: [
                 Image.asset('assets/images/Battle-Box.png', width: 250, fit: BoxFit.fitHeight),
-                Positioned(top: 16, left: 20, child: AnimatedTextKit(animatedTexts: [TyperAnimatedText('Apa yang awak akan lakukan ?', speed: Duration(milliseconds: 100), textStyle: TextStyle(color: Colors.white))], isRepeatingAnimation: false,),)
+                Positioned(top: 16, left: 20, child: AnimatedTextKit(animatedTexts: [TyperAnimatedText('Apa yang awak akan lakukan ?', speed: Duration(milliseconds: 30), textStyle: TextStyle(color: Colors.white))], isRepeatingAnimation: false,),)
               ],
             ),
             Container(
@@ -213,8 +305,8 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Column(children: [Spacer(), Text('MAKI', style: TextStyle(fontSize: 15, color: Colors.white)), Spacer(), Text('MAKI', style: TextStyle(fontSize: 15, color: Colors.white)), Spacer()]),
-                      Column(children: [Spacer(), Text('CIUM', style: TextStyle(fontSize: 15, color: Colors.white)), Spacer(), Text('CIUM', style: TextStyle(fontSize: 15, color: Colors.white)), Spacer()]),
+                      Column(children: [Spacer(), Text('Pukul', style: TextStyle(fontSize: 15, color: Colors.white)), Spacer(), Text('Maki', style: TextStyle(fontSize: 15, color: Colors.white)), Spacer()]),
+                      Column(children: [Spacer(), Text('Sepak', style: TextStyle(fontSize: 15, color: Colors.white)), Spacer(), Text('Cium', style: TextStyle(fontSize: 15, color: Colors.white)), Spacer()]),
                     ],
                   ),
                   Positioned(
@@ -237,7 +329,7 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
           ],
         );
       }
-      else if (gameController.valueButton == 2) {
+      else if (gameController.valueButton == 2 && showConfirmation == true) {
         return confirmAction(gameController);
       }
       else {
@@ -246,8 +338,8 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
             Image.asset('assets/images/Battle-Box.png', width: 359, fit: BoxFit.cover),
             Positioned(top: 25, left: 20, child: AnimatedTextKit(
               animatedTexts: [
-                TyperAnimatedText('Hazim gorgon sudah tiba !', speed: Duration(milliseconds: 100), textStyle: TextStyle(color: Colors.white)),
-                TyperAnimatedText('Apa yang awak akan lakukan ?', speed: Duration(milliseconds: 100), textStyle: TextStyle(color: Colors.white)),
+                TyperAnimatedText('Hazim gorgon sudah tiba !', speed: Duration(milliseconds: 30), textStyle: TextStyle(color: Colors.white)),
+                TyperAnimatedText('Apa yang awak akan lakukan ?', speed: Duration(milliseconds: 30), textStyle: TextStyle(color: Colors.white)),
               ],
               isRepeatingAnimation: false,
             ),),
@@ -353,16 +445,16 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
                                 Container(height: 50, width: 50),
                                 gameBoyButton(() => setState(() {
                                   gameController.buttonB();
+                                  showConfirmation = false;
                                 }), 'b'),
                               ],
                             ),
                             Column(
                               children: [
-                                gameBoyButton(() => setState(() {
-                                  select = false;
+                                gameBoyButton(() { setState(() {
                                   gameController.buttonA();
                                   playerAction(gameController);
-                                }), 'a'),
+                                });}, 'a'),
                                 Container(height: 50, width: 50),
                               ],
                             ),

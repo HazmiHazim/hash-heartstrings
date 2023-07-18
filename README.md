@@ -1,25 +1,20 @@
-## Flutter App Using Hive
+## Flutter App Using Firebase
 ### Setup Dependencies
 
 - Add the following to your pubspec.yaml:
   ```
-  dependencies:
-      hive: ^2.2.3
-      hive_flutter: ^1.1.0
-      uuid: ^3.0.7
-      flutter_datetime_picker: ^1.5.1
-      eva_icons_flutter: ^3.1.0
-      curved_navigation_bar: ^1.0.3
-      liquid_progress_indicator: ^0.4.0
-      animated_text_kit: ^4.2.2
-   
-  dev_dependencies:
-      hive_generator: ^2.0.0
-      build_runner: ^2.3.3
+  Dependencies:
+    cupertino_icons: ^1.0.2
+    intl: ^0.18.0 
+    eva_icons_flutter: ^3.1.0
+    curved_navigation_bar: ^1.0.3
+    liquid_progress_indicator: ^0.4.0
+    animated_text_kit: ^4.2.2
+    flame_audio: ^1.3.0
+    video_player: ^2.6.1
+
+  Firebase Dependencies Integration: 
+    firebase_core: ^2.8.0
+    cloud_firestore: ^4.4.5
   ```
   
-- Guide to get adapter class:
-  ```
-  Write this command in your terminal:
-  flutter pub run build_runner build --delete-conflicting-outputs
-  ```

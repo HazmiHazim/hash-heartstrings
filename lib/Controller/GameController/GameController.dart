@@ -7,6 +7,7 @@ class GameController {
   int valueButton = 0;
   int minValueButton = 0;
   int maxValueButton = 2;
+  int selectedAction = 0;
 
   // Set min value and max value for position
   final double minX = 0.0;
@@ -65,7 +66,9 @@ class GameController {
     if (valueButton < maxValueButton) {
       valueButton = valueButton + 1;
     }
+    selectedAction = selectedAction;
     print('Value: $valueButton');
+    print('selectedAction: $selectedAction');
   }
 
   //Method To Back / Undo
