@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hash_heartstring/View/DatePlannerInterface/DatePlannerInterface.dart';
@@ -61,9 +62,9 @@ class _MainState extends State<Main> {
         animationDuration: const Duration(milliseconds: 280),
         items: const <Widget>[
           Icon(Icons.home, size: 30),
-          Icon(Icons.note_alt, size: 30),
+          Icon(EvaIcons.heart, size: 30),
           Icon(Icons.quiz_rounded, size: 30),
-          Icon(Icons.games_outlined, size: 30),
+          Icon(Icons.gamepad_sharp, size: 30),
         ],
         onTap: (index) {
           setState(() {

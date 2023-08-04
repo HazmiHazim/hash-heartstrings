@@ -67,7 +67,7 @@ class GameController {
       valueButton = valueButton + 1;
     }
     selectedAction = selectedAction;
-    print('Value: $valueButton');
+    print('Value Button: $valueButton');
     print('selectedAction: $selectedAction');
   }
 

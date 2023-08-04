@@ -26,6 +26,7 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
   bool boyStop = false;
   bool girlStop = false;
   bool showConfirmation = false;
+  bool isConfirm = false;
 
   // set player health to 100;
   double playerHealth = 100.0;
@@ -90,9 +91,10 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
 
     // Start the animation
     girlController.forward();
-
   }
 
+  // UI for the button in lower part of the game
+  // Make each button functioning
   Widget gameBoyButton(Function function, String text) {
     return GestureDetector(
       onTap: () => function(),
@@ -151,10 +153,6 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
       punishment4(gameController);
       print('showConfirmation: $showConfirmation');
     }
-
-    if (showConfirmation == true) {
-      return confirmAction(gameController);
-    }
   }
 
   Widget confirmAction(GameController gameController) {
@@ -202,38 +200,31 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
 
   // Action 1 damage
   punishment1(GameController gameController) {
-    int isConfirm;
-
-    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0)) {
-      isConfirm = 1;
+    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0) && gameController.selectedAction == 1) {
+      isConfirm = true;
+      if (isConfirm) {
+        playerHealth = playerHealth - 40;
+        print('Health: $playerHealth');
+      }
     }
     else {
-      isConfirm = 0;
       gameController.valueButton = gameController.valueButton - 1;
-    }
-
-    if (isConfirm == 1) {
-      playerHealth = playerHealth - 40;
-      print('Health: $playerHealth');
-    }
-    else {
       showConfirmation = false;
     }
   }
 
   // Action 2 damage
   punishment2(GameController gameController) {
-    int isConfirm;
 
-    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0)) {
-      isConfirm = 1;
+    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0) && gameController.selectedAction == 1) {
+      isConfirm = true;
     }
     else {
-      isConfirm = 0;
+      isConfirm = false;
       gameController.valueButton = gameController.valueButton - 1;
     }
 
-    if (isConfirm == 1) {
+    if (isConfirm) {
       playerHealth = playerHealth - 30;
       print('Health: $playerHealth');
     }
@@ -244,17 +235,16 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
 
   // Action 3 damage
   punishment3(GameController gameController) {
-    int isConfirm;
 
-    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0)) {
-      isConfirm = 1;
+    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0) && gameController.selectedAction == 1) {
+      isConfirm = true;
     }
     else {
-      isConfirm = 0;
+      isConfirm = false;
       gameController.valueButton = gameController.valueButton - 1;
     }
 
-    if (isConfirm == 1) {
+    if (isConfirm) {
       playerHealth = playerHealth - 10;
       print('Health: $playerHealth');
     }
@@ -265,17 +255,16 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
 
   // Action 4 damage
   punishment4(GameController gameController) {
-    int isConfirm;
 
-    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0)) {
-      isConfirm = 1;
+    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0) && gameController.selectedAction == 1) {
+      isConfirm = true;
     }
     else {
-      isConfirm = 0;
+      isConfirm = false;
       gameController.valueButton = gameController.valueButton - 1;
     }
 
-    if (isConfirm == 1) {
+    if (isConfirm) {
       playerHealth = playerHealth + 10;
       print('Health: $playerHealth');
     }
