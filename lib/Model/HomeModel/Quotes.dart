@@ -802,6 +802,206 @@ class Quotes {
       "id": "200",
       "quote": "You have bewitched me, body and soul, and I love… I love… I love you."
     },
+    {
+      "id": "201",
+      "quote": "One glance at you, that's all it takes to make my heart beat faster."
+    },
+    {
+      "id": "202",
+      "quote": "The brightness of my day doesn`t depend on the amount of sunshine. Everything depends on your smile."
+    },
+    {
+      "id": "203",
+      "quote": "You may not always be perfect, but you will always be perfect for me."
+    },
+    {
+      "id": "204",
+      "quote": "I love you not because of anything you have, but because of something that I feel when I’m near you."
+    },
+    {
+      "id": "205",
+      "quote": "In a sea of people, my eyes will always be searching for you."
+    },
+    {
+      "id": "206",
+      "quote": "I want to be the girl who makes you say, ‘My life has changed since I met her."
+    },
+    {
+      "id": "207",
+      "quote": "I know I am in love with you because my reality is finally better than my dreams."
+    },
+    {
+      "id": "208",
+      "quote": "When I look at you, all I want to do is kiss you."
+    },
+    {
+      "id": "209",
+      "quote": "I`ll allow you to appear in my dreams every night if I`ll be allowed to be in yours."
+    },
+    {
+      "id": "210",
+      "quote": "I never knew what love was until I met you, then when distance pulled us apart, I found out what true love is."
+    },
+    {
+      "id": "211",
+      "quote": "I never knew what love was until I met you, then when distance pulled us apart, I found out what true love is."
+    },
+    {
+      "id": "212",
+      "quote": "Yeah, I'm thinking about you right now and no I can't stop."
+    },
+    {
+      "id": "213",
+      "quote": "My favorite place is inside your hug."
+    },
+    {
+      "id": "214",
+      "quote": "I love how you take care of me and how you keep working to be a better man even on days that I fail to be a better woman."
+    },
+    {
+      "id": "215",
+      "quote": "I found my home and paradise with you."
+    },
+    {
+      "id": "216",
+      "quote": "Your smile is like the sunshine and it brightens up my day. Your thoughts in my head create the sweetest melody and I can’t help but fall for you."
+    },
+    {
+      "id": "217",
+      "quote": "Even after we're married for 30 years, I'll still want you to flirt with me."
+    },
+    {
+      "id": "218",
+      "quote": "My name sounds even cuter with your last name added to it."
+    },
+    {
+      "id": "219",
+      "quote": "I always tried to act happy. Now, I have found real happiness with you."
+    },
+    {
+      "id": "220",
+      "quote": "Give me a kiss and I’ll serenade you among the stars. Give me your love and I will pluck each star to set at your feet."
+    },
+    {
+      "id": "221",
+      "quote": "I wish I could turn back the clock. I’d find you sooner and love you longer."
+    },
+    {
+      "id": "222",
+      "quote": "Love quotes for him to have him all over you."
+    },
+    {
+      "id": "223",
+      "quote": "I know you, and I can openly say how love looks like."
+    },
+    {
+      "id": "224",
+      "quote": "Some people search their whole lives to find what I found in you."
+    },
+    {
+      "id": "225",
+      "quote": "I love the way you laugh, I love the way you smile. I love the way you make me feel every single time. You are the one who takes away the blues. That is the reason why I am so in love with you!"
+    },
+    {
+      "id": "226",
+      "quote": "I am happiest when I’m right next to you."
+    },
+    {
+      "id": "227",
+      "quote": "When I want to smile, I know exactly what to do, I just close my eyes and think of you."
+    },
+    {
+      "id": "228",
+      "quote": "I wanna live, sleep, and wake up by your side."
+    },
+    {
+      "id": "229",
+      "quote": "I like the way we feel together. We fit. I've never fit with anyone the way that we do."
+    },
+    {
+      "id": "230",
+      "quote": "Thank you for staying even if you had every reason to leave. Thank you for making it easier when life gets hard."
+    },
+    {
+      "id": "231",
+      "quote": "I’ve fallen in love many times… but always with you."
+    },
+    {
+      "id": "232",
+      "quote": "Why can’t you just magically pop into my room with me and just cuddle for the rest of the night and kiss my head when I start to fall asleep?"
+    },
+    {
+      "id": "233",
+      "quote": "I made a wish and you came true."
+    },
+    {
+      "id": "234",
+      "quote": "I am very indecisive and always have trouble picking my favorite anything. But, without a doubt, you are my favorite everything."
+    },
+    {
+      "id": "235",
+      "quote": "Loving you was never an option. It was a necessity."
+    },
+    {
+      "id": "236",
+      "quote": "Tell me who admires you and loves you, and I will tell you who you are."
+    },
+    {
+      "id": "237",
+      "quote": "It wasn't loved at first sight. I knew the moment my heart skipped a beat you would be mine forever."
+    },
+    {
+      "id": "238",
+      "quote": "I am difficult but I promise I am worth it."
+    },
+    {
+      "id": "239",
+      "quote": "Thank you for stealing my eyes from the crowd and stealing my heart from me."
+    },
+    {
+      "id": "240",
+      "quote": "I don’t wanna close my eyes, I don’t wanna fall asleep, cuz I’d miss you babe and I don’t wanna miss a thing."
+    },
+    {
+      "id": "241",
+      "quote": "Thank you for staying by my side even though I tried to push you away."
+    },
+    {
+      "id": "242",
+      "quote": "When I think rain, I think about singing. When I think about singing, it’s a heavenly tune. When I think about heaven then I think about angels. When I think about angels, I think about you."
+    },
+    {
+      "id": "243",
+      "quote": "I can’t stop thinking about you, today… tomorrow… always."
+    },
+    {
+      "id": "244",
+      "quote": "Making your dream come true is my dream come true."
+    },
+    {
+      "id": "245",
+      "quote": "I don’t need paradise because I found you. I don’t need dreams because I already have you. All I want is the taste that your lips allow."
+    },
+    {
+      "id": "246",
+      "quote": "I am here, I will always be here. Watching you, loving you."
+    },
+    {
+      "id": "247",
+      "quote": "Even if I was the busiest person in the world, I'd always find time for you."
+    },
+    {
+      "id": "248",
+      "quote": "Thank you for always being my rainbow after the storm."
+    },
+    {
+      "id": "249",
+      "quote": "No matter how bad things get or how sad I feel, whenever I see you I can't help but to smile and realize you'll always be there to support me."
+    },
+    {
+      "id": "250",
+      "quote": "I loved you, I love you, I will always love you forever and ever."
+    },
   ];
 
   static String getQuote() {
