@@ -215,60 +215,45 @@ class _GameInterfaceState extends State<GameInterface> with TickerProviderStateM
 
   // Action 2 damage
   punishment2(GameController gameController) {
-
-    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0) && gameController.selectedAction == 1) {
+    if (showConfirmation == true && gameController.position == Offset(0.0, 20.0) && gameController.selectedAction == 2) {
       isConfirm = true;
+      if (isConfirm) {
+        playerHealth = playerHealth - 30;
+        print('Health: $playerHealth');
+      }
     }
     else {
-      isConfirm = false;
       gameController.valueButton = gameController.valueButton - 1;
-    }
-
-    if (isConfirm) {
-      playerHealth = playerHealth - 30;
-      print('Health: $playerHealth');
-    }
-    else {
       showConfirmation = false;
     }
   }
 
   // Action 3 damage
   punishment3(GameController gameController) {
-
-    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0) && gameController.selectedAction == 1) {
+    if (showConfirmation == true && gameController.position == Offset(50.0, 0.0) && gameController.selectedAction == 3) {
       isConfirm = true;
+      if (isConfirm) {
+        playerHealth = playerHealth - 10;
+        print('Health: $playerHealth');
+      }
     }
     else {
-      isConfirm = false;
       gameController.valueButton = gameController.valueButton - 1;
-    }
-
-    if (isConfirm) {
-      playerHealth = playerHealth - 10;
-      print('Health: $playerHealth');
-    }
-    else {
       showConfirmation = false;
     }
   }
 
   // Action 4 damage
   punishment4(GameController gameController) {
-
-    if (showConfirmation == true && gameController.position == Offset(0.0, 0.0) && gameController.selectedAction == 1) {
+    if (showConfirmation == true && gameController.position == Offset(50.0, 20.0) && gameController.selectedAction == 4) {
       isConfirm = true;
+      if (isConfirm) {
+        playerHealth = playerHealth + 10;
+        print('Health: $playerHealth');
+      }
     }
     else {
-      isConfirm = false;
       gameController.valueButton = gameController.valueButton - 1;
-    }
-
-    if (isConfirm) {
-      playerHealth = playerHealth + 10;
-      print('Health: $playerHealth');
-    }
-    else {
       showConfirmation = false;
     }
   }

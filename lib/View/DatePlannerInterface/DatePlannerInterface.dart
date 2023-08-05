@@ -70,10 +70,23 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                               controller: _textController,
                               decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
-                                  hintText: 'Enter Activity To Do'
+                                  hintText: 'Enter you confession'
                               ),
                             ),
                             Row(children: [
+                              Expanded(
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);   // Close dialog box
+                                  },
+                                  autofocus: true,
+                                  style: ElevatedButton.styleFrom(primary: const Color(0xFFFF69B4)),
+                                  child: const Text('Cancel'),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
                               Expanded(
                                 child: ElevatedButton(
                                   onPressed: () {
@@ -87,19 +100,6 @@ class _DatePlannerInterfaceState extends State<DatePlannerInterface> {
                                   autofocus: true,
                                   style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
                                   child: const Text('Save'),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Expanded(
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.pop(context); //Close Dialog Box
-                                  },
-                                  autofocus: true,
-                                  style: ElevatedButton.styleFrom(primary: const Color(0xFFFF69B4)),
-                                  child: const Text('Cancel'),
                                 ),
                               )
                             ])
