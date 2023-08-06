@@ -1,4 +1,4 @@
-# `Flutter App Using Hive`
+# `Love App Using Hive`
 ### Setup Dependencies
 
 - Add the following to your pubspec.yaml:
