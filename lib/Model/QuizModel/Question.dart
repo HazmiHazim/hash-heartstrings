@@ -10,7 +10,7 @@ class Question {
         {'pilihanJawapan': 'E', 'score': false},
       ],
     },
-  ];
+  ]; 
 
   static void shuffleQuestions() {
     question.shuffle();
